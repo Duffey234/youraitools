@@ -1,0 +1,14 @@
+node_modules
+.git
+.github
+.wrangler
+.bench-cache
+test
+scripts
+*.log
+.env
+.dev.vars
+Dockerfile
+.dockerignore
+contracts/out
+tools

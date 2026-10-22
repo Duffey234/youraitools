@@ -1,0 +1,84 @@
+{
+  "name": "x402-prompt-injection-scan",
+  "version": "0.1.4",
+  "description": "Prompt injection detection for AI agents and LLM apps: scan text, web pages and MCP tool definitions for jailbreaks, tool poisoning, hidden Unicode and data exfiltration. Offline library, MCP server and x402 pay-per-call API.",
+  "mcpName": "io.github.agentgate-builder/x402-prompt-injection-scan",
+  "type": "module",
+  "main": "src/detect.js",
+  "bin": {
+    "injectscan-mcp": "src/mcp-stdio.js",
+    "x402-prompt-injection-scan": "src/mcp-stdio.js"
+  },
+  "exports": {
+    ".": "./src/detect.js",
+    "./detect": "./src/detect.js",
+    "./rules": "./src/rules.js",
+    "./scanner": "./src/scanner.js",
+    "./htmlhidden": "./src/htmlhidden.js"
+  },
+  "files": [
+    "src/mcp-stdio.js",
+    "src/detect.js",
+    "src/rules.js",
+    "src/scanner.js",
+    "src/htmlhidden.js",
+    "src/html2md.js",
+    "README.md",
+    "BENCHMARK.md",
+    "LICENSE",
+    "logo.svg",
+    "server.json"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/node.js",
+    "deploy": "wrangler deploy",
+    "bazaar": "node scripts/bazaar-index.js",
+    "benchmark": "node scripts/benchmark.js --write bench/results.json",
+    "mcp": "node src/mcp-stdio.js"
+  },
+  "keywords": [
+    "prompt-injection",
+    "prompt-injection-detection",
+    "jailbreak",
+    "jailbreak-detection",
+    "llm-security",
+    "ai-security",
+    "guardrails",
+    "tool-poisoning",
+    "mcp-security",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "ai-agents",
+    "llm",
+    "x402"
+  ],
+  "author": "agentgate-builder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://agentgate-source.pages.dev/x402-prompt-injection-scan/"
+  },
+  "homepage": "https://api.youraitools.co/injectscan",
+  "bugs": {
+    "url": "https://agentgate-source.pages.dev/x402-prompt-injection-scan/"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@coinbase/x402": "2.1.0",
+    "@hono/node-server": "^1.19.9",
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0",
+    "@x402/fetch": "2.28.0",
+    "@x402/hono": "2.28.0",
+    "hono": "^4.13.13",
+    "viem": "^2.0.0",
+    "wrangler": "^4.86.0",
+    "x402": "1.2.0",
+    "x402-fetch": "1.2.0"
+  }
+}

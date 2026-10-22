@@ -1,0 +1,175 @@
+{
+ "mint": "HxxZZHoRuvNT2GHhQcoSNFVKuBM19TmoAgkmktoV6YDV",
+ "chain": "solana",
+ "name": "Trap",
+ "symbol": "TRAP",
+ "decimals": 6,
+ "supply": "1000000000000",
+ "verdict": "DANGER",
+ "score": 0,
+ "confidence": "high",
+ "degraded": false,
+ "reasons": [
+  {
+   "severity": "danger",
+   "code": "permanent_delegate",
+   "text": "Permanent delegate F6Yt…vqo3 can move or burn tokens from ANY holder's account."
+  },
+  {
+   "severity": "danger",
+   "code": "whale",
+   "text": "One wallet holds 70% of supply."
+  },
+  {
+   "severity": "danger",
+   "code": "concentrated",
+   "text": "Top 10 wallets hold 70% of supply (pools, curves and vaults excluded)."
+  },
+  {
+   "severity": "warn",
+   "code": "transfer_fee",
+   "text": "Transfer fee is 2.5% on every transfer."
+  },
+  {
+   "severity": "warn",
+   "code": "transfer_hook",
+   "text": "Transfer hook program RXGU…33Gz runs on every transfer and can block transfers or sells."
+  },
+  {
+   "severity": "good",
+   "code": "no_freeze",
+   "text": "Freeze authority is disabled."
+  },
+  {
+   "severity": "good",
+   "code": "fixed_supply",
+   "text": "Mint authority is disabled (fixed supply)."
+  },
+  {
+   "severity": "good",
+   "code": "immutable_metadata",
+   "text": "Metadata is immutable."
+  },
+  {
+   "severity": "good",
+   "code": "liquidity",
+   "text": "Liquidity $50.0k across 1 pool."
+  }
+ ],
+ "checks": {
+  "authorities": {
+   "mint_authority": null,
+   "freeze_authority": null
+  },
+  "program": "token-2022",
+  "extensions": {
+   "transfer_fee_pct": 2.5,
+   "transfer_fee_authority": null,
+   "permanent_delegate": "F6YtqKFxm7fyNTj3K8h9ZfeakGEVHsDSbxsG7dYQvqo3",
+   "transfer_hook_program": "RXGUmMm3MEgxdncrtKhG4Hm9W3CEFxtCXvmJs9233Gz",
+   "default_account_state": null,
+   "list": [
+    "permanentDelegate",
+    "transferHook",
+    "transferFeeConfig",
+    "tokenMetadata"
+   ]
+  },
+  "metadata": {
+   "name": "Trap",
+   "symbol": "TRAP",
+   "uri": null,
+   "update_authority": null,
+   "mutable": false,
+   "source": "Token-2022 metadata extension"
+  },
+  "market": {
+   "available": true,
+   "source": "DexScreener",
+   "liquidity_usd": 50000,
+   "pools": 1,
+   "main_pool": {
+    "address": "3gLESRnfLgzAqu6PwGhBwsiBsnQ7BAtyWHhZ5zNcDPMF",
+    "dex": "raydium",
+    "labels": [],
+    "quote": "SOL",
+    "liquidity_usd": 50000,
+    "volume_h24_usd": 1000,
+    "txns_h24": {
+     "buys": 100,
+     "sells": 80
+    },
+    "txns_h1": null,
+    "created_at": "2026-01-01T00:00:00.000Z",
+    "url": "https://dexscreener.com/solana/x"
+   },
+   "volume_h24_usd": 1000,
+   "buys_h24": 100,
+   "sells_h24": 80,
+   "first_pool_at": "2026-01-01T00:00:00.000Z",
+   "bonding_curve": false,
+   "all_pools": [
+    {
+     "address": "3gLESRnfLgzAqu6PwGhBwsiBsnQ7BAtyWHhZ5zNcDPMF",
+     "dex": "raydium",
+     "labels": [],
+     "quote": "SOL",
+     "liquidity_usd": 50000,
+     "volume_h24_usd": 1000,
+     "txns_h24": {
+      "buys": 100,
+      "sells": 80
+     },
+     "txns_h1": null,
+     "created_at": "2026-01-01T00:00:00.000Z",
+     "url": "https://dexscreener.com/solana/x"
+    }
+   ]
+  },
+  "holders": {
+   "available": true,
+   "source": "getTokenLargestAccounts (20 largest accounts) + owner lookup",
+   "top10_pct": 70,
+   "top10_wallets_pct": 70,
+   "largest_wallet_pct": 70,
+   "in_programs_pct": 0,
+   "burned_pct": 0,
+   "top": [
+    {
+     "account": "9fQ6Lp3eMmVeg2GwUh9VgC7rM3jJzv6dUcv3Bq5x9ZNF",
+     "owner": "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+     "kind": "wallet",
+     "pct": 60
+    },
+    {
+     "account": "A4HfPVkdjjst1awC1BKhZ4zcPisoGvsjn7ftSiYsy47F",
+     "owner": "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+     "kind": "wallet",
+     "pct": 10
+    }
+   ]
+  },
+  "age": {
+   "created_at": "2026-01-01T00:00:00.000Z",
+   "days": 294.71,
+   "source": "first DEX pool (DexScreener)"
+  },
+  "recognized": null
+ },
+ "sources": {
+  "rpc": true,
+  "metadata": true,
+  "holders": true,
+  "dexscreener": true
+ },
+ "limits": [
+  "No swap is simulated: sell blocking is inferred from on-chain controls (freeze authority, default-frozen accounts, permanent delegate, transfer hook, pausable, non-transferable) and from recent sells on DEX pools.",
+  "A transfer hook program can run arbitrary rules on every transfer; SolVerdict reports that a hook exists, not what it does.",
+  "Holder concentration uses the 20 largest token accounts from a public RPC; owners that are program-derived addresses (pools, bonding curves, vaults, lockers) are separated from wallets, but exchange and team wallets look like any other wallet.",
+  "Liquidity, volume and pool age come from DexScreener and can lag the chain by up to a minute; LP lock status is not checked."
+ ],
+ "disclaimer": "Automated, informational risk signals from public on-chain and market data at the time of the check. Not financial advice, not an audit, no guarantee: a token that passes can still lose value or be changed later by whoever controls it.",
+ "engine": "solverdict-0.1",
+ "tier": "check",
+ "checked_at": "2026-10-22T17:00:00.000Z"
+}

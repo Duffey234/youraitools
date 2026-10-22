@@ -1,0 +1,102 @@
+{
+  "name": "@agentgate-builder/perpradar",
+  "version": "0.1.1",
+  "mcpName": "co.youraitools/perpradar",
+  "description": "Perp funding rates, open interest and positioning for trading agents: MCP server + client for PerpRadar. Funding normalized to 8h and APR, OI, mark/index premium, cross-venue median and spread, 7-day funding history and z-score, carry and a universe scan for funding extremes across Hyperliquid, dYdX v4, Paradex and Aevo. Free MCP preview; full data via x402 pay-per-call API. Read-only analytics. Not financial advice.",
+  "type": "module",
+  "main": "src/lite.js",
+  "bin": {
+    "perpradar": "src/mcp-stdio.js",
+    "perpradar-mcp": "src/mcp-stdio.js"
+  },
+  "exports": {
+    ".": "./src/lite.js",
+    "./lite": "./src/lite.js",
+    "./mcp": "./src/mcp-stdio.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src/mcp-stdio.js",
+    "src/lite.js",
+    "src/paid.js",
+    "src/deadline.js",
+    "src/version.js",
+    "README.md",
+    "LICENSE",
+    "logo.svg"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/node.js",
+    "deploy": "wrangler deploy",
+    "mcp": "node src/mcp-stdio.js",
+    "gen:examples": "node tools/gen-examples.mjs"
+  },
+  "keywords": [
+    "funding-rate",
+    "funding-rates",
+    "perpetual-futures",
+    "perps",
+    "open-interest",
+    "hyperliquid",
+    "dydx",
+    "paradex",
+    "aevo",
+    "crypto-trading",
+    "trading-bot",
+    "market-data",
+    "mcp",
+    "mcp-server",
+    "x402",
+    "usdc",
+    "ai-agents"
+  ],
+  "author": "agentgate-builder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://agentgate-source.pages.dev/x402-perpradar/"
+  },
+  "homepage": "https://api.youraitools.co/perpradar",
+  "bugs": {
+    "url": "https://agentgate-source.pages.dev/x402-perpradar/",
+    "email": "hello@youraitools.co"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@coinbase/x402": "2.1.0",
+    "@hono/node-server": "^1.19.9",
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0",
+    "@x402/fetch": "2.28.0",
+    "@x402/hono": "2.28.0",
+    "hono": "^4.13.13",
+    "viem": "^2.0.0",
+    "wrangler": "^4.86.0",
+    "x402": "1.2.0",
+    "x402-fetch": "1.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@x402/fetch": ">=2.28.0 <3",
+    "@x402/evm": ">=2.28.0 <3",
+    "viem": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@x402/fetch": {
+      "optional": true
+    },
+    "@x402/evm": {
+      "optional": true
+    },
+    "viem": {
+      "optional": true
+    }
+  }
+}

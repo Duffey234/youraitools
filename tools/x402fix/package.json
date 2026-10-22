@@ -1,0 +1,104 @@
+{
+  "name": "@agentgate-builder/x402fix",
+  "version": "0.1.0",
+  "mcpName": "co.youraitools/x402fix",
+  "description": "x402 endpoint doctor for sellers and agent builders: point it at any paid x402 URL and get a graded list of what will break payments or Bazaar / x402scan listing (402 on GET/HEAD/POST, CORS, v2 header + v1 body, CAIP-2, USDC asset + EIP-712 domain, Solana feePayer, Bazaar schema, multichain price drift, payee checks, CDP validate verdict) with paste-ready fixes and a generated Bazaar block. Free MCP server; full reports via x402 pay-per-call API.",
+  "type": "module",
+  "main": "src/lite.js",
+  "bin": {
+    "x402fix": "src/mcp-stdio.js",
+    "x402fix-mcp": "src/mcp-stdio.js"
+  },
+  "exports": {
+    ".": "./src/lite.js",
+    "./lite": "./src/lite.js",
+    "./mcp": "./src/mcp-stdio.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src/mcp-stdio.js",
+    "src/lite.js",
+    "src/paid.js",
+    "src/deadline.js",
+    "src/version.js",
+    "README.md",
+    "LICENSE",
+    "logo.svg"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/node.js",
+    "deploy": "wrangler deploy",
+    "mcp": "node src/mcp-stdio.js"
+  },
+  "keywords": [
+    "x402",
+    "x402-lint",
+    "x402-validator",
+    "bazaar",
+    "x402scan",
+    "agentic-payments",
+    "http-402",
+    "payment-required",
+    "mcp",
+    "mcp-server",
+    "ai-agents",
+    "developer-tools",
+    "linter",
+    "usdc",
+    "base",
+    "solana",
+    "polygon",
+    "arbitrum",
+    "cloudflare-workers",
+    "hono"
+  ],
+  "author": "agentgate-builder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://agentgate-source.pages.dev/x402-x402fix/"
+  },
+  "homepage": "https://api.youraitools.co/x402fix",
+  "bugs": {
+    "url": "https://agentgate-source.pages.dev/x402-x402fix/",
+    "email": "hello@youraitools.co"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@coinbase/x402": "2.1.0",
+    "@hono/node-server": "^1.19.9",
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0",
+    "@x402/fetch": "2.28.0",
+    "@x402/hono": "2.28.0",
+    "hono": "^4.13.13",
+    "viem": "^2.0.0",
+    "wrangler": "^4.86.0",
+    "x402": "1.2.0",
+    "x402-fetch": "1.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@x402/fetch": ">=2.28.0 <3",
+    "@x402/evm": ">=2.28.0 <3",
+    "viem": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@x402/fetch": {
+      "optional": true
+    },
+    "@x402/evm": {
+      "optional": true
+    },
+    "viem": {
+      "optional": true
+    }
+  }
+}

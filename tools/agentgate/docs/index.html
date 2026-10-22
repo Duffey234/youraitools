@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgentGate · Verified-by-Concordium agent checker</title>
+<meta name="description" content="Check whether an AI agent is registered in the Concordium Agent Registry (CIS-8004), Active, and Verified by Concordium. Gate x402 paid APIs to accountable agents.">
+<style>
+  :root { --bg:#0b0f17; --card:#141a26; --fg:#e6ebf5; --muted:#8b96ab; --ok:#2ecc71; --bad:#ff5c5c; --warn:#f5b041; --acc:#4f8cff; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:var(--bg); color:var(--fg); }
+  main { max-width:820px; margin:0 auto; padding:32px 20px 60px; }
+  h1 { margin:0 0 4px; font-size:28px; } .sub { color:var(--muted); margin:0 0 24px; }
+  .card { background:var(--card); border-radius:12px; padding:20px; margin:16px 0; }
+  form { display:flex; gap:8px; flex-wrap:wrap; }
+  input, select, button { font:inherit; border-radius:8px; border:1px solid #2a3346; background:#0f1420; color:var(--fg); padding:10px 12px; }
+  input { flex:1 1 360px; font-family:ui-monospace,Menlo,monospace; }
+  button { background:var(--acc); border-color:var(--acc); cursor:pointer; font-weight:600; }
+  .pill { display:inline-block; padding:2px 10px; border-radius:999px; font-weight:700; font-size:14px; }
+  .ok { background:rgba(46,204,113,.15); color:var(--ok); } .bad { background:rgba(255,92,92,.15); color:var(--bad); }
+  table { width:100%; border-collapse:collapse; margin-top:12px; font-size:14px; }
+  td { padding:6px 4px; border-top:1px solid #222a3a; vertical-align:top; word-break:break-all; } td:first-child { color:var(--muted); width:150px; word-break:normal; }
+  ul.issues { padding-left:18px; font-size:14px; } .sev-error{color:var(--bad)} .sev-warning{color:var(--warn)} .sev-info{color:var(--muted)}
+  pre { background:#0f1420; padding:12px; border-radius:8px; overflow:auto; font-size:13px; }
+  a { color:var(--acc); } .muted { color:var(--muted); font-size:14px; } .examples button { background:#1c2433; border-color:#2a3346; font-weight:400; font-size:13px; padding:4px 10px; }
+  footer { color:var(--muted); font-size:13px; margin-top:32px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>AgentGate</h1>
+  <p class="sub">Is this AI agent accountable? Check the <a href="https://docs.concordium.com/en/mainnet/technical-reference/agent-registry/index.html">Concordium Agent Registry</a> (CIS-8004) before you let it pay for or call your API.</p>
+  <p class="sub"><b>Paid API for agents:</b> <code>GET <a href="https://agentgate.agentgate.workers.dev/">https://agentgate.agentgate.workers.dev/v1/check-agent?id=…</a></code> at 0.005 USDC per call on Base via x402 (unpaid calls get HTTP 402 with the terms). Listed in the x402 Bazaar (PayAI).</p>
+
+  <div class="card">
+    <form id="f">
+      <input id="id" placeholder="Badge (CIS-2 token address) or Concordium account" autocomplete="off" spellcheck="false" required>
+      <select id="net"><option>mainnet</option><option>testnet</option><option>devnet</option></select>
+      <button type="submit">Check agent</button>
+    </form>
+    <p class="muted examples">Examples:
+      <button type="button" data-id="Mf22soLh1NuZYFgBK8iSs" data-net="mainnet">mainnet badge #484</button>
+      <button type="button" data-id="JyP9TtQC3HCNrTYR3sc2T" data-net="testnet">testnet badge #0</button>
+      <button type="button" data-id="4DDvjwdcLmTy1Ar9FCKKPMiABrS261TvyXJGr4n4ypuuogXeFF" data-net="mainnet">mainnet owner account</button>
+    </p>
+    <div id="out" aria-live="polite"></div>
+  </div>
+
+  <div class="card">
+    <h2 style="margin-top:0;font-size:20px">Gate your x402 API in 3 lines</h2>
+<pre>import { agentGate } from 'concordium-agentgate';
+// before your x402 paymentMiddleware: unverified agents get 403 and are never asked to pay
+app.get('/paid', agentGate({ network: 'testnet' }), paymentMiddleware(/* ... */), handler);</pre>
+    <p class="muted">Agents send their badge in the <code>X-Agent-Badge</code> header. AgentGate checks the registry record is <b>Active</b> and the Agent Card's SHA-256 matches the on-chain <code>metadata_hash</code>. MCP clients can call the <code>check_agent</code> tool (<code>npx -y -p concordium-agentgate agentgate-mcp</code>).
+    <a href="https://youraitools.co/guides/x402-agent-verification">Integration guide</a> · <a href="https://agentgate-source.pages.dev/agentgate/">Source</a>.</p>
+  </div>
+
+  <footer>
+    Lookups go straight from your browser to Concordium's public endpoints
+    (<code>agent-registry-mcp.concordium.com</code>: badge-check REST for mainnet, hosted MCP for testnet/devnet). No data is sent to AgentGate.
+    Open source (MIT). Independent project, not affiliated with Concordium.<br>
+    Support: <code>0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F</code> (EVM)
+  </footer>
+</main>
+<script type="module">
+  import { ConcordiumPublicProvider } from './registry.js';
+  const p = new ConcordiumPublicProvider();
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? '—').replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  const yn = (v) => v === null || v === undefined ? 'not checked' : v ? '✔ yes' : '✘ no';
+  async function run(id, network) {
+    $('#out').innerHTML = '<p class="muted">Checking…</p>';
+    history.replaceState(null, '', `?id=${encodeURIComponent(id)}&network=${network}`);
+    try {
+      const r = await p.check(id, { network });
+      $('#out').innerHTML = `
+        <p style="margin:16px 0 0"><span class="pill ${r.verified ? 'ok' : 'bad'}">${r.verified ? 'VERIFIED BY CONCORDIUM' : 'NOT VERIFIED'}</span>
+        <span class="muted">&nbsp;${esc(r.network)} · via ${esc(r.source)}</span></p>
+        <table>
+          <tr><td>Registered</td><td>${yn(r.found)}</td></tr>
+          <tr><td>Active</td><td>${yn(r.active)}</td></tr>
+          <tr><td>Card hash matches</td><td>${yn(r.cardHashMatches)}</td></tr>
+          <tr><td>Badge / token</td><td>${esc(r.tokenAddress)} (id ${esc(r.tokenId)})</td></tr>
+          <tr><td>Owner account</td><td>${esc(r.owner)}</td></tr>
+          <tr><td>Agent wallet</td><td>${esc(r.agentWallet)}</td></tr>
+          <tr><td>Agent Card</td><td>${r.agentUri ? `<a href="${esc(r.agentUri)}" rel="noopener nofollow" target="_blank">${esc(r.agentUri)}</a>` : '—'}</td></tr>
+          ${r.agentCount !== undefined ? `<tr><td>Agents owned</td><td>${esc(r.agentCount)}</td></tr>` : ''}
+        </table>
+        ${r.issues.length ? `<ul class="issues">${r.issues.map((i) => `<li class="sev-${esc(i.severity)}">${esc(i.severity)}: ${esc(i.message)}</li>`).join('')}</ul>` : ''}`;
+    } catch (e) {
+      $('#out').innerHTML = `<p class="sev-error">Registry error: ${esc(e.message)}</p>`;
+    }
+  }
+  $('#f').addEventListener('submit', (e) => { e.preventDefault(); run($('#id').value.trim(), $('#net').value); });
+  document.querySelectorAll('.examples button').forEach((b) => b.addEventListener('click', () => { $('#id').value = b.dataset.id; $('#net').value = b.dataset.net; run(b.dataset.id, b.dataset.net); }));
+  const q = new URLSearchParams(location.search);
+  if (q.get('id')) { $('#id').value = q.get('id'); $('#net').value = q.get('network') || 'mainnet'; run(q.get('id'), $('#net').value); }
+</script>
+</body>
+</html>

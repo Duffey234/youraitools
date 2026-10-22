@@ -1,0 +1,391 @@
+{
+ "token": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+ "chain": "base",
+ "chain_id": 8453,
+ "name": "Brett",
+ "symbol": "BRETT",
+ "decimals": 18,
+ "total_supply": "9999997544340006294456944163",
+ "verdict": "SAFE",
+ "score": 100,
+ "confidence": "high",
+ "degraded": false,
+ "reasons": [
+  {
+   "severity": "good",
+   "code": "sellable",
+   "text": "Simulated buy and sell both worked with no token tax (round trip lost 1.97% to pool/hook fees and price impact)."
+  },
+  {
+   "severity": "good",
+   "code": "renounced",
+   "text": "Ownership renounced."
+  },
+  {
+   "severity": "good",
+   "code": "verified",
+   "text": "Source verified (Sourcify)."
+  },
+  {
+   "severity": "good",
+   "code": "liquidity",
+   "text": "Liquidity $2.31M across 15 pools."
+  },
+  {
+   "severity": "good",
+   "code": "distributed",
+   "text": "Top 10 holders own 29.6% (estimate excluding pools and burn)."
+  }
+ ],
+ "checks": {
+  "sellability": {
+   "simulated": true,
+   "pool": "0xba3f945812a83471d709bce9c3ca699a19fb46f7",
+   "dex": "uniswap",
+   "pool_type": "v3",
+   "quote": "0x4200000000000000000000000000000000000006",
+   "amount_in": "50000000000000000",
+   "buy_ok": true,
+   "sell_ok": true,
+   "transfer_ok": true,
+   "buy_tax_pct": 0,
+   "sell_tax_pct": 0,
+   "transfer_tax_pct": 0,
+   "round_trip_loss_pct": 1.97,
+   "buy_error": null,
+   "sell_error": null,
+   "buy_gas": 151950,
+   "sell_gas": 68641
+  },
+  "owner": {
+   "address": "0x0000000000000000000000000000000000000000",
+   "renounced": true,
+   "is_contract": false,
+   "has_owner_function": true
+  },
+  "powers": {
+   "mint": [],
+   "blacklist": [],
+   "pause": [],
+   "fees": [
+    "setBuyFees(uint256,uint256,uint256)",
+    "setSellFees(uint256,uint256,uint256)"
+   ],
+   "trading": [
+    "enableTrading()"
+   ],
+   "limits": [
+    "bulkExcludeFromMaxTransaction(address[],bool)",
+    "excludeFromMaxTransaction(address,bool)",
+    "removeLimits()",
+    "setMaxWalletAndMaxTransaction(uint256,uint256)"
+   ],
+   "balance": [],
+   "upgrade": [],
+   "access_control": false,
+   "source": "verified ABI (sourcify)"
+  },
+  "proxy": {
+   "upgradeable": false,
+   "type": null,
+   "implementation": null,
+   "admin": null,
+   "admin_owner": null
+  },
+  "contract": {
+   "verified": true,
+   "verified_by": "Sourcify",
+   "recognized": null,
+   "burned_supply_pct": 0.9
+  },
+  "liquidity": {
+   "usd": 2314534,
+   "pools": 15,
+   "main_pool": {
+    "address": "0xba3f945812a83471d709bce9c3ca699a19fb46f7",
+    "dex": "uniswap",
+    "quote": "WETH",
+    "liquidity_usd": 1445201,
+    "volume_h24_usd": 0,
+    "txns_h24": null
+   },
+   "lp": null
+  },
+  "holders": {
+   "count": 909566,
+   "top10_pct": 32.6,
+   "source": "GeckoTerminal",
+   "includes_pools": true,
+   "in_pools_pct": 2.13,
+   "top10_ex_pools_est_pct": 29.6
+  },
+  "age": {
+   "created_at": "2024-02-24T06:47:51.000Z",
+   "block": 10983962,
+   "source": "contract creation (on-chain)",
+   "days": 971.24
+  }
+ },
+ "deep": {
+  "simulations": [
+   {
+    "pool": "0xba3f945812a83471d709bce9c3ca699a19fb46f7",
+    "pool_type": "v3",
+    "quote": "0x4200000000000000000000000000000000000006",
+    "amount_in": "50000000000000000",
+    "simulated": true,
+    "buy": {
+     "ok": true,
+     "expected": "24789032807239576610174",
+     "received": "24789032807239576610174",
+     "tax_pct": 0,
+     "gas": 151950,
+     "error": null
+    },
+    "transfer": {
+     "ok": true,
+     "sent": "2478903280723957661017",
+     "received": "2478903280723957661017",
+     "tax_pct": 0
+    },
+    "sell": {
+     "ok": true,
+     "amount": "22310129526515618949157",
+     "pool_received": "22310129526515618949157",
+     "transfer_tax_pct": 0,
+     "expected_out": "44111383621053116",
+     "received_out": "44111383621053116",
+     "tax_pct": 0,
+     "gas": 68641,
+     "error": null
+    },
+    "round_trip_loss_pct": 1.97,
+    "dex": "uniswap",
+    "liquidity_usd": 1445201
+   },
+   {
+    "pool": "0x4e829F8A5213c42535AB84AA40BD4aDCCE9cBa02",
+    "pool_type": "v3",
+    "quote": "0x4200000000000000000000000000000000000006",
+    "amount_in": "50000000000000000",
+    "simulated": true,
+    "buy": {
+     "ok": true,
+     "expected": "24812566291556742184487",
+     "received": "24812566291556742184487",
+     "tax_pct": 0,
+     "gas": 258366,
+     "error": null
+    },
+    "transfer": {
+     "ok": true,
+     "sent": "2481256629155674218448",
+     "received": "2481256629155674218448",
+     "tax_pct": 0
+    },
+    "sell": {
+     "ok": true,
+     "amount": "22331309662401067966039",
+     "pool_received": "22331309662401067966039",
+     "transfer_tax_pct": 0,
+     "expected_out": "44805369575251262",
+     "received_out": "44805369575251262",
+     "tax_pct": 0,
+     "gas": 123364,
+     "error": null
+    },
+    "round_trip_loss_pct": 0.43,
+    "dex": "aerodrome",
+    "liquidity_usd": 724608.81
+   }
+  ],
+  "pools": [
+   {
+    "address": "0xba3f945812a83471d709bce9c3ca699a19fb46f7",
+    "dex": "uniswap",
+    "labels": [
+     "v3"
+    ],
+    "liquidity_usd": 1445201,
+    "liquidity_quote": 0,
+    "quote": "0x4200000000000000000000000000000000000006",
+    "quote_symbol": "WETH",
+    "base": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+    "created_at": null,
+    "txns_h24": null,
+    "volume_h24": null,
+    "source": "on-chain estimate"
+   },
+   {
+    "address": "0x4e829F8A5213c42535AB84AA40BD4aDCCE9cBa02",
+    "dex": "aerodrome",
+    "labels": [],
+    "liquidity_usd": 724608.81,
+    "liquidity_quote": 141.7187,
+    "quote": "0x4200000000000000000000000000000000000006",
+    "quote_symbol": "WETH",
+    "base": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+    "created_at": null,
+    "txns_h24": {
+     "buys": 355,
+     "sells": 414
+    },
+    "volume_h24": 147346.59,
+    "source": "DexScreener"
+   },
+   {
+    "address": "0x76bf0abd20f1e0155ce40a62615a90a709a6c3d8",
+    "dex": "uniswap",
+    "labels": [
+     "v3"
+    ],
+    "liquidity_usd": 74138,
+    "liquidity_quote": 0,
+    "quote": "0x4200000000000000000000000000000000000006",
+    "quote_symbol": "WETH",
+    "base": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+    "created_at": null,
+    "txns_h24": null,
+    "volume_h24": null,
+    "source": "on-chain estimate"
+   },
+   {
+    "address": "0x75cc10fdcea4b7d13c115abb08240ac9c9be6f2f",
+    "dex": "pancakeswap",
+    "labels": [
+     "v3"
+    ],
+    "liquidity_usd": 68507,
+    "liquidity_quote": 0,
+    "quote": "0x4200000000000000000000000000000000000006",
+    "quote_symbol": "WETH",
+    "base": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+    "created_at": null,
+    "txns_h24": null,
+    "volume_h24": null,
+    "source": "on-chain estimate"
+   },
+   {
+    "address": "0x36a46dff597c5a444bbc521d26787f57867d2214",
+    "dex": "uniswap",
+    "labels": [
+     "v3"
+    ],
+    "liquidity_usd": 842,
+    "liquidity_quote": 0,
+    "quote": "0x4200000000000000000000000000000000000006",
+    "quote_symbol": "WETH",
+    "base": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+    "created_at": null,
+    "txns_h24": null,
+    "volume_h24": null,
+    "source": "on-chain estimate"
+   },
+   {
+    "address": "0xb34380ba6a17b022782c7fc91e319c10c168fb98",
+    "dex": "uniswap",
+    "labels": [
+     "v2"
+    ],
+    "liquidity_usd": 694,
+    "liquidity_quote": 0,
+    "quote": "0x4200000000000000000000000000000000000006",
+    "quote_symbol": "WETH",
+    "base": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+    "created_at": null,
+    "txns_h24": null,
+    "volume_h24": null,
+    "source": "on-chain estimate"
+   },
+   {
+    "address": "0xbf0a0c12e7c0610002f6aa6e609755ede42d6a4d",
+    "dex": "uniswap",
+    "labels": [
+     "v3"
+    ],
+    "liquidity_usd": 193,
+    "liquidity_quote": 0,
+    "quote": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "quote_symbol": "USDC",
+    "base": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+    "created_at": null,
+    "txns_h24": null,
+    "volume_h24": null,
+    "source": "on-chain estimate"
+   },
+   {
+    "address": "0xfbb7df8b446f6d216702c0c3898fb681a21186d3",
+    "dex": "aerodrome",
+    "labels": [
+     "solidly"
+    ],
+    "liquidity_usd": 129,
+    "liquidity_quote": 0,
+    "quote": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "quote_symbol": "USDC",
+    "base": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+    "created_at": null,
+    "txns_h24": null,
+    "volume_h24": null,
+    "source": "on-chain estimate"
+   },
+   {
+    "address": "0x765bf105ed38d2ee7801210b4bb2b8b7d9b3a17f",
+    "dex": "pancakeswap",
+    "labels": [
+     "v3"
+    ],
+    "liquidity_usd": 106,
+    "liquidity_quote": 0,
+    "quote": "0x4200000000000000000000000000000000000006",
+    "quote_symbol": "WETH",
+    "base": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+    "created_at": null,
+    "txns_h24": null,
+    "volume_h24": null,
+    "source": "on-chain estimate"
+   },
+   {
+    "address": "0x69979d7a2c9697ea27a565a8835ade3b566edf6e",
+    "dex": "pancakeswap",
+    "labels": [
+     "v3"
+    ],
+    "liquidity_usd": 72,
+    "liquidity_quote": 0,
+    "quote": "0x4200000000000000000000000000000000000006",
+    "quote_symbol": "WETH",
+    "base": "0x532f27101965dd16442e59d40670faf5ebb142e4",
+    "created_at": null,
+    "txns_h24": null,
+    "volume_h24": null,
+    "source": "on-chain estimate"
+   }
+  ],
+  "geckoterminal": {
+   "gt_score": 76.83582089552239,
+   "is_honeypot": false,
+   "developer_address": "0x46f64bec31eaf281176f9bb5899107a80e932b45",
+   "developer_holding_pct": 0
+  },
+  "creation_block": 10983962
+ },
+ "sources": {
+  "rpc": true,
+  "dexscreener": true,
+  "geckoterminal": true,
+  "sourcify": true,
+  "onchain_pools": true
+ },
+ "limits": [
+  "Sell simulation runs in one block from a contract address: tokens that block contracts, enforce cooldowns or change rules later can behave differently for a real wallet.",
+  "Uniswap v4 hooks can charge fees or change behavior per swap; the simulation reflects the hook at the time of the check.",
+  "Owner powers come from the verified ABI or, if unverified, from function selectors in the bytecode: renamed or hidden functions can be missed.",
+  "LP lock status is only verified for burned LP tokens on v2-style pools; third-party lockers and concentrated-liquidity positions are not checked.",
+  "Holder concentration comes from GeckoTerminal snapshots and can include pools, lockers and exchanges."
+ ],
+ "disclaimer": "Automated, informational risk signals from public on-chain and market data at the time of the check. Not financial advice, not an audit, no guarantee: a token that passes can still lose value or be changed later by whoever controls it.",
+ "engine": "tokenverdict-0.1",
+ "tier": "deep",
+ "checked_at": "2026-10-22T12:33:36.262Z"
+}

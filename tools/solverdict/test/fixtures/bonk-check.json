@@ -1,0 +1,261 @@
+{
+ "mint": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+ "chain": "solana",
+ "name": "Bonk",
+ "symbol": "Bonk",
+ "decimals": 5,
+ "supply": "8799432050679511815",
+ "verdict": "SAFE",
+ "score": 87,
+ "confidence": "high",
+ "degraded": false,
+ "reasons": [
+  {
+   "severity": "warn",
+   "code": "top10",
+   "text": "Top 10 wallets hold 38.24% of supply (pools, curves and vaults excluded)."
+  },
+  {
+   "severity": "info",
+   "code": "mutable_metadata",
+   "text": "Name, symbol and image can still be changed by 9AhK…sbkw."
+  },
+  {
+   "severity": "good",
+   "code": "no_freeze",
+   "text": "Freeze authority is disabled."
+  },
+  {
+   "severity": "good",
+   "code": "fixed_supply",
+   "text": "Mint authority is disabled (fixed supply)."
+  },
+  {
+   "severity": "good",
+   "code": "liquidity",
+   "text": "Liquidity $312.8k across 1 pool."
+  }
+ ],
+ "checks": {
+  "authorities": {
+   "mint_authority": null,
+   "freeze_authority": null
+  },
+  "program": "spl-token",
+  "extensions": null,
+  "metadata": {
+   "name": "Bonk",
+   "symbol": "Bonk",
+   "uri": "https://arweave.net/QPC6FYdUn-3V8ytFNuoCS85S2tHAuiDblh6u3CIZLsw",
+   "update_authority": "9AhKqLR67hwapvG8SA2JFXaCshXc9nALJjpKaHZrsbkw",
+   "mutable": true,
+   "source": "Metaplex metadata"
+  },
+  "market": {
+   "available": true,
+   "source": "DexScreener",
+   "liquidity_usd": 312809,
+   "pools": 1,
+   "main_pool": {
+    "address": "5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9",
+    "dex": "orca",
+    "labels": [
+     "wp"
+    ],
+    "quote": "SOL",
+    "liquidity_usd": 312809,
+    "volume_h24_usd": 232038,
+    "txns_h24": {
+     "buys": 5291,
+     "sells": 5205
+    },
+    "txns_h1": {
+     "buys": 250,
+     "sells": 167
+    },
+    "created_at": "2022-12-25T15:00:24.000Z",
+    "url": "https://dexscreener.com/solana/5zpyutju9ee6jfymdgok7f6s5kczqtc9fomp3uekuya9"
+   },
+   "volume_h24_usd": 232038,
+   "buys_h24": 5291,
+   "sells_h24": 5205,
+   "first_pool_at": "2022-12-25T15:00:24.000Z",
+   "bonding_curve": false,
+   "all_pools": [
+    {
+     "address": "5zpyutJu9ee6jFymDGoK7F6S5Kczqtc9FomP3ueKuyA9",
+     "dex": "orca",
+     "labels": [
+      "wp"
+     ],
+     "quote": "SOL",
+     "liquidity_usd": 312809,
+     "volume_h24_usd": 232038,
+     "txns_h24": {
+      "buys": 5291,
+      "sells": 5205
+     },
+     "txns_h1": {
+      "buys": 250,
+      "sells": 167
+     },
+     "created_at": "2022-12-25T15:00:24.000Z",
+     "url": "https://dexscreener.com/solana/5zpyutju9ee6jfymdgok7f6s5kczqtc9fomp3uekuya9"
+    }
+   ]
+  },
+  "holders": {
+   "available": true,
+   "source": "getTokenLargestAccounts (20 largest accounts) + owner lookup",
+   "top10_pct": 38.24,
+   "top10_wallets_pct": 38.24,
+   "largest_wallet_pct": 8.83,
+   "in_programs_pct": 0.99,
+   "burned_pct": 0,
+   "top": [
+    {
+     "account": "5hpfC9VBxVcoW9opCnM2PqR6YWRLBzrBpabJTZnwwNiw",
+     "owner": "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+     "kind": "wallet",
+     "pct": 8.83
+    },
+    {
+     "account": "2vPvEovB1gw8bAUqasThEv6YMAdJ77AU3RxiUNqknEiw",
+     "owner": "51yZyDSnec4xnUv7XLRVYcDyV4x3wUtzrDcRaYbmQU5j",
+     "kind": "wallet",
+     "pct": 6.79
+    },
+    {
+     "account": "6LozHQrLbEPeJGWKpN6wnnk76GhD4bGAVSoTBE5xXpsf",
+     "owner": "4xLpwxgYuPwPvtQjE94RLS4WZ4aD8NJYYKr2AJk99Qdg",
+     "kind": "wallet",
+     "pct": 3.73
+    },
+    {
+     "account": "9LHQb1Nh9U65WHgD63FgpkjgPHUfU8s54PXqwwdM8g6K",
+     "owner": "9RpzaFh4J8F6Qg1gjnhrhSp9eXdVDjsesZXe53qp7ubB",
+     "kind": "wallet",
+     "pct": 3.06
+    },
+    {
+     "account": "FNGhHbP4D9FtsiRpYXrr9mXjsegKJZ8exEvKAeUtgXPz",
+     "owner": "EbLm4ZtRqDftrQnZaMMvnwcKjK5ef5vm1Hg3sAPv3tKi",
+     "kind": "wallet",
+     "pct": 3.04
+    },
+    {
+     "account": "6jFRDDFQDCasLcWVMtixuu1eQCDnMhCttXktVeL7cEYM",
+     "owner": "8Mm46CsqxiyAputDUp2cXHg41HE3BfynTeMBDwzrMZQH",
+     "kind": "wallet",
+     "pct": 2.81
+    },
+    {
+     "account": "EHQPpncJDsLdpskV7EfrR6pCZRkCqJJNcvgPRsBQzq8E",
+     "owner": "3B7XAQrLoEMDEGvX8569F9GRb9PcXXocJmj5wvhhei9z",
+     "kind": "wallet",
+     "pct": 2.75
+    },
+    {
+     "account": "EkJbghrin4HbD2Bx8sGQ4LWyY8DDksTnxJDsq2Tj8Hqb",
+     "owner": "DDrxSAP14UxBJ9Xz2EaqM9WSTuavX6SuBNtsDpiVhGr6",
+     "kind": "wallet",
+     "pct": 2.52
+    },
+    {
+     "account": "3bYqu63xiF13prJMhwoxozTHGeRoLdkhWXyaJEfbsdCs",
+     "owner": "1tjoQzWg21ceMAhyLVs4s2Zc1Pm27mLTcJ9EfEFu7km",
+     "kind": "wallet",
+     "pct": 2.45
+    },
+    {
+     "account": "8HKWzZ3tr886CsFN52Gt5Tk7gY2APkYh2ViAf95L8ZvE",
+     "owner": "CJjCPXBnSt6wRoyi7wzcMj5NbWvmPtzxE2JpWDMTRxj4",
+     "kind": "wallet",
+     "pct": 2.26
+    },
+    {
+     "account": "HH85bz3qwhGqe5Yd22ty13H7oKUFoVLwsjw5KmvR5bPd",
+     "owner": "CK8i4zFXkDE2KWfyg7g9S748r6mwxajbcKcyGhQMR3qQ",
+     "kind": "wallet",
+     "pct": 2.22
+    },
+    {
+     "account": "3G5o7G4EZFV6ayPHMMkigGRP51SgANqEUmCgu97X42x4",
+     "owner": "AVPKzX2QZ8E23SWR728yhMTnnqr9UjAZdgemfaE3qHg5",
+     "kind": "wallet",
+     "pct": 1.37
+    },
+    {
+     "account": "2kv9s3szXrRLMPWqthsftNDcKoFHqg47MJYNTbPd1H4J",
+     "owner": "5oNhn2ESFHgg52xiEKBt93cEEnbsoUoekcxXsWpLbHUJ",
+     "kind": "wallet",
+     "pct": 1.14
+    },
+    {
+     "account": "DPmm1czxqhC4Sp262v7iaMQQNiKSt2hbqfU95EEo8V26",
+     "owner": "GBrURzmtWujJRTA3Bkvo7ZgWuZYLMMwPCwre7BejJXnK",
+     "kind": "wallet",
+     "pct": 1.12
+    },
+    {
+     "account": "Ds3YuzGS7RVMJ85ddaGk6H1BZJZFAxAMxgcYe3JwPGHe",
+     "owner": "Am8MAEorCMAKxphqjAz3Ff59NEwPm4W2eS3DQLi2B4hg",
+     "kind": "wallet",
+     "pct": 1.07
+    },
+    {
+     "account": "Dw3U1HKn28LFP3NEe6SJrzZDNfd7Vv2uMTW5jj3M1khk",
+     "owner": "F18jTyiQivKmuy3zYsJRjMBPgHab4is16betYFEY67WF",
+     "kind": "wallet",
+     "pct": 1.07
+    },
+    {
+     "account": "9FXfaV6eVe5RfD8vLg137u8kzA1aNmNsV3kDHCZhdqzF",
+     "owner": "634QWfYYzXuqdDWoVtNgQisVYkTdBmfBbBPYZoNZyHwE",
+     "kind": "program",
+     "pct": 0.99
+    },
+    {
+     "account": "upQMKh1YQSBPc7npnYTBHUCh9GPRTAjqyJDozZvSCAg",
+     "owner": "EfEgUV2uQAzTooo6L4oYiEm15F6JBTnGiWMejqxPaqL3",
+     "kind": "wallet",
+     "pct": 0.99
+    },
+    {
+     "account": "BUN4JNBUdhRtvPofDoj9Cw7MssyzRW1YV2KDXbumpHmd",
+     "owner": "F533MxEpGZdqDigTwnDgKYyTGN7n5CekCZr5Untqvv6q",
+     "kind": "wallet",
+     "pct": 0.94
+    },
+    {
+     "account": "BmMsdKfpkLv1WKHrjozqEv2A7KuoqFCPpxPkDxSmaszJ",
+     "owner": "H9ukwfbFhqQF8wZNokPwe1ddT61HdDBoT5bXFvdD6f8D",
+     "kind": "wallet",
+     "pct": 0.81
+    }
+   ]
+  },
+  "age": {
+   "created_at": "2022-12-25T15:00:24.000Z",
+   "days": 1397.1,
+   "source": "first DEX pool (DexScreener)"
+  },
+  "recognized": null
+ },
+ "sources": {
+  "rpc": true,
+  "metadata": true,
+  "holders": true,
+  "dexscreener": true
+ },
+ "limits": [
+  "No swap is simulated: sell blocking is inferred from on-chain controls (freeze authority, default-frozen accounts, permanent delegate, transfer hook, pausable, non-transferable) and from recent sells on DEX pools.",
+  "A transfer hook program can run arbitrary rules on every transfer; SolVerdict reports that a hook exists, not what it does.",
+  "Holder concentration uses the 20 largest token accounts from a public RPC; owners that are program-derived addresses (pools, bonding curves, vaults, lockers) are separated from wallets, but exchange and team wallets look like any other wallet.",
+  "Liquidity, volume and pool age come from DexScreener and can lag the chain by up to a minute; LP lock status is not checked."
+ ],
+ "disclaimer": "Automated, informational risk signals from public on-chain and market data at the time of the check. Not financial advice, not an audit, no guarantee: a token that passes can still lose value or be changed later by whoever controls it.",
+ "engine": "solverdict-0.1",
+ "tier": "check",
+ "checked_at": "2026-10-22T17:27:44.910Z"
+}

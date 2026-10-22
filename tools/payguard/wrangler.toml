@@ -1,0 +1,67 @@
+name = "payguard"
+main = "src/worker.js"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+X402_NETWORK = "eip155:8453"
+X402_PRICE_ADDRESS = "$0.001"
+X402_PRICE_BATCH = "$0.01"
+PAY_TO = "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F"
+# Solana mainnet payout wallet (public address; USDC token account CM3JgZELvWZMRuxuCT6kNXYPtgCNgGrzQCJs57YbxpAT). Used only when Solana is enabled in src/networks.js
+SOLANA_PAY_TO = "FH73WbbUe2UyNzfy72MJs5nT3NxyDf9GrqE7kzjL2Jte"
+FACILITATOR_URL = "https://facilitator.payai.network"
+# x402 v2 facilitator: "payai" (FACILITATOR_URL above) or "cdp" (Coinbase CDP; needs the CDP_API_KEY_ID and
+# CDP_API_KEY_SECRET secrets, falls back to PayAI with a warning if either is missing)
+FACILITATOR = "cdp"
+# Solana devnet test route /solana-devnet/v1/address (x402 v2, solana:EtWTRABZaYq6iMfeYKouRu166VU2xqa1, devnet USDC,
+# public x402.org facilitator). Receiver key kept offline. See src/solana-devnet.js.
+SOLANA_DEVNET_PAY_TO = "DmeY2NNcgbgSd2S7HTipepnCnFsfF6bhmBEms3ctknkq"
+SOLANA_DEVNET_FACILITATOR_URL = "https://x402.org/facilitator"
+SOLANA_DEVNET_FEE_PAYER = "CKPKJWNdJEqa81x7CkZ14BVPiY6y16Sxs7owznqtWYp5"
+# Stellar testnet test route /stellar-testnet/v1/address (x402 v2, stellar:testnet, 0.01 XLM via the native SAC,
+# x402.org facilitator, fees sponsored). Receiver key kept offline. See src/stellar-testnet.js.
+STELLAR_TESTNET_PAY_TO = "GD2I22CZ7K6BJR2JLN54LDM7TSXFSMTDWYFPJECWXZOHK3TFM6PEX44I"
+STELLAR_TESTNET_FACILITATOR_URL = "https://x402.org/facilitator"
+# GOAT Network Testnet3 test route /goat-testnet3/v1/address (x402 v2 exact, eip155:48816, tUSDC or GOAT test USDC via
+# EIP-3009, our own facilitator Worker goat-facilitator, source https://agentgate-source.pages.dev/x402-goat-facilitator/). Receiver key kept offline. See src/goat-testnet3.js.
+GOAT_TESTNET3_PAY_TO = "0x35A4577c2Bd3c6dC283285c879C3E5cfD252C6a1"
+GOAT_TESTNET3_FACILITATOR_URL = "https://goat-facilitator.agentgate.workers.dev"
+GOAT_TESTNET3_FACILITATOR_SIGNER = "0x7730c7b13e10440dda3A2700845e7cE4dF901df4"
+PUBLIC_URL = "https://payguard.agentgate.workers.dev"
+# Reverse proxy (youraitools-api Pages project): public URLs become https://<PROXY_HOSTS><PROXY_PREFIX> only for these hosts
+PROXY_HOSTS = "api.youraitools.co"
+PROXY_PREFIX = "/payguard"
+# x402-trust.com provider verification (public key line; private key kept offline)
+X402_TRUST_TXT = "x402-trust-verification=v1:MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEE3BRokZRE_5VQY8-uCv5Cc6P-FFPNo8kBOO0nSCcw0OL84uR2LpQRaY_3bp2GVU8ph_8cLr9on8kMbbBUyivsA"
+
+# Legacy usage counters: READ-ONLY since 2026-10-22 (history up to that UTC day). No KV writes any more..
+[[kv_namespaces]]
+binding = "STATS"
+id = "<your-kv-id>"
+
+# Free tier: 10 previews / MCP calls per IP per minute
+# Usage counters (batched, flushed <= once/min/isolate) in a SQLite Durable Object (free plan, no KV quota)
+[[durable_objects.bindings]]
+name = "COUNTER"
+class_name = "StatsCounter"
+
+[[migrations]]
+tag = "v1-stats-counter"
+new_sqlite_classes = ["StatsCounter"]
+
+[[ratelimits]]
+name = "FREE_LIMITER"
+namespace_id = "1005"
+simple = { limit = 10, period = 60 }
+
+# Own x402 facilitator for GOAT Testnet3 (Worker "goat-facilitator")
+[[services]]
+binding = "GOAT_FACILITATOR"
+service = "goat-facilitator"
+
+# Prepaid credits (Worker "credits", RPC entrypoint CreditsGate): Authorization: Bearer yatc_... debits the route price
+[[services]]
+binding = "CREDITS"
+service = "credits"
+entrypoint = "CreditsGate"

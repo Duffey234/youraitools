@@ -1,0 +1,3 @@
+// Logo and grade colors shared by the landing page and discovery documents.
+export const COLORS = { A: '#22c55e', B: '#84cc16', C: '#f59e0b', D: '#f97316', F: '#ef4444' };
+export const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="x402fix"><rect width="64" height="64" rx="14" fill="#0f172a"/><text x="32" y="30" font-family="ui-monospace,Menlo,monospace" font-size="17" font-weight="700" fill="#38bdf8" text-anchor="middle">402</text><path d="M18 42l7 7 21-21" fill="none" stroke="#22c55e" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 -2) scale(1 .8) translate(0 12)"/></svg>`;

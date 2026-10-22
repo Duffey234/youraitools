@@ -1,0 +1,221 @@
+{
+ "token": "0x826f32fc853553b3b8db8ed6ca41c8409c2adeea",
+ "chain": "base",
+ "chain_id": 8453,
+ "name": "All Your Base",
+ "symbol": "AYB",
+ "decimals": 18,
+ "total_supply": "1000000000000000000000000000",
+ "verdict": "DANGER",
+ "score": 0,
+ "confidence": "high",
+ "degraded": false,
+ "reasons": [
+  {
+   "severity": "danger",
+   "code": "honeypot",
+   "text": "HONEYPOT SIGNAL: a simulated buy worked but selling back failed (reverted: balance)."
+  },
+  {
+   "severity": "danger",
+   "code": "tiny_liquidity",
+   "text": "Liquidity is only $280."
+  },
+  {
+   "severity": "warn",
+   "code": "blacklist",
+   "text": "Addresses can be blocked: setBlacklist(address,bool), setBlacklistBatch(address[],bool)."
+  },
+  {
+   "severity": "warn",
+   "code": "upgradeable",
+   "text": "Upgradeable proxy (EIP-1967): the code can be replaced."
+  },
+  {
+   "severity": "warn",
+   "code": "brand_new",
+   "text": "Brand new: contract creation (on-chain) 1 h ago."
+  },
+  {
+   "severity": "good",
+   "code": "verified",
+   "text": "Source verified (Sourcify)."
+  },
+  {
+   "severity": "good",
+   "code": "distributed",
+   "text": "Top 10 holders own 0.3% (estimate excluding pools and burn)."
+  }
+ ],
+ "checks": {
+  "sellability": {
+   "simulated": true,
+   "pool": "0x2e7D8F70b80dCcEd38Dee931552DC1195e2B21B7",
+   "dex": "uniswap",
+   "pool_type": "v3",
+   "quote": "0x4200000000000000000000000000000000000006",
+   "amount_in": "71597898742640",
+   "buy_ok": true,
+   "sell_ok": false,
+   "transfer_ok": true,
+   "buy_tax_pct": 0,
+   "sell_tax_pct": null,
+   "transfer_tax_pct": 0,
+   "round_trip_loss_pct": null,
+   "buy_error": null,
+   "sell_error": "reverted: balance",
+   "buy_gas": 111155,
+   "sell_gas": 55751
+  },
+  "owner": {
+   "address": "0x6762ef06e338b7272b559acbcd5bcd8d7b6530b3",
+   "renounced": false,
+   "is_contract": false,
+   "has_owner_function": true
+  },
+  "powers": {
+   "mint": [],
+   "blacklist": [
+    "setBlacklist(address,bool)",
+    "setBlacklistBatch(address[],bool)"
+   ],
+   "pause": [],
+   "fees": [],
+   "trading": [],
+   "limits": [],
+   "balance": [],
+   "upgrade": [
+    "upgradeToAndCall(address,bytes)"
+   ],
+   "access_control": false,
+   "source": "verified ABI (sourcify) + implementation ABI"
+  },
+  "proxy": {
+   "upgradeable": true,
+   "type": "EIP-1967",
+   "implementation": "0xca97a310d475743d7cd55408e7608f597fe253fe",
+   "admin": null,
+   "admin_owner": null
+  },
+  "contract": {
+   "verified": true,
+   "verified_by": "Sourcify",
+   "recognized": null,
+   "burned_supply_pct": 96.73
+  },
+  "liquidity": {
+   "usd": 280,
+   "pools": 1,
+   "main_pool": {
+    "address": "0x2e7D8F70b80dCcEd38Dee931552DC1195e2B21B7",
+    "dex": "uniswap",
+    "quote": "WETH",
+    "liquidity_usd": 280,
+    "volume_h24_usd": 351,
+    "txns_h24": {
+     "buys": 73,
+     "sells": 49
+    }
+   },
+   "lp": null
+  },
+  "holders": {
+   "count": 13517,
+   "top10_pct": 97,
+   "source": "GeckoTerminal",
+   "includes_pools": true,
+   "in_pools_pct": 0.02,
+   "top10_ex_pools_est_pct": 0.3
+  },
+  "age": {
+   "created_at": "2026-10-22T11:18:11.000Z",
+   "block": 52939272,
+   "source": "contract creation (on-chain)",
+   "days": 0.05
+  }
+ },
+ "deep": {
+  "simulations": [
+   {
+    "pool": "0x2e7D8F70b80dCcEd38Dee931552DC1195e2B21B7",
+    "pool_type": "v3",
+    "quote": "0x4200000000000000000000000000000000000006",
+    "amount_in": "71597898742640",
+    "simulated": true,
+    "buy": {
+     "ok": true,
+     "expected": "174330740798840619178",
+     "received": "174330740798840619178",
+     "tax_pct": 0,
+     "gas": 111155,
+     "error": null
+    },
+    "transfer": {
+     "ok": true,
+     "sent": "17433074079884061917",
+     "received": "17433074079884061917",
+     "tax_pct": 0
+    },
+    "sell": {
+     "ok": false,
+     "amount": "120156897666718956557261",
+     "pool_received": "0",
+     "transfer_tax_pct": null,
+     "expected_out": "0",
+     "received_out": "0",
+     "tax_pct": null,
+     "gas": 55751,
+     "error": "reverted: balance"
+    },
+    "dex": "uniswap",
+    "liquidity_usd": 280
+   }
+  ],
+  "pools": [
+   {
+    "address": "0x2e7D8F70b80dCcEd38Dee931552DC1195e2B21B7",
+    "dex": "uniswap",
+    "labels": [
+     "v3"
+    ],
+    "liquidity_usd": 280,
+    "liquidity_quote": 0.03504,
+    "quote": "0x4200000000000000000000000000000000000006",
+    "quote_symbol": "WETH",
+    "base": "0x826f32fc853553b3b8db8ed6ca41c8409c2adeea",
+    "created_at": "2026-10-22T11:18:17.000Z",
+    "txns_h24": {
+     "buys": 73,
+     "sells": 49
+    },
+    "volume_h24": 351.05,
+    "source": "DexScreener"
+   }
+  ],
+  "geckoterminal": {
+   "gt_score": 23.88059701492537,
+   "is_honeypot": "unknown",
+   "developer_address": null,
+   "developer_holding_pct": null
+  },
+  "creation_block": 52939272
+ },
+ "sources": {
+  "rpc": true,
+  "dexscreener": true,
+  "geckoterminal": true,
+  "sourcify": true,
+  "onchain_pools": true
+ },
+ "limits": [
+  "Sell simulation runs in one block from a contract address: tokens that block contracts, enforce cooldowns or change rules later can behave differently for a real wallet.",
+  "Uniswap v4 hooks can charge fees or change behavior per swap; the simulation reflects the hook at the time of the check.",
+  "Owner powers come from the verified ABI or, if unverified, from function selectors in the bytecode: renamed or hidden functions can be missed.",
+  "LP lock status is only verified for burned LP tokens on v2-style pools; third-party lockers and concentrated-liquidity positions are not checked.",
+  "Holder concentration comes from GeckoTerminal snapshots and can include pools, lockers and exchanges."
+ ],
+ "disclaimer": "Automated, informational risk signals from public on-chain and market data at the time of the check. Not financial advice, not an audit, no guarantee: a token that passes can still lose value or be changed later by whoever controls it.",
+ "engine": "tokenverdict-0.1",
+ "tier": "deep",
+ "checked_at": "2026-10-22T12:33:41.377Z"
+}

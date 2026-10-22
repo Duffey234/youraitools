@@ -1,0 +1,99 @@
+{
+  "name": "@agentgate-builder/stackdetect",
+  "version": "0.1.0",
+  "mcpName": "co.youraitools/stackdetect",
+  "description": "Website technology detection (tech stack lookup) for AI agents and MCP: CMS, frameworks, hosting/CDN, analytics, ad pixels, payments, plus email and DNS providers from public DNS. Free MCP server; full results with versions and evidence via x402 pay-per-call API.",
+  "type": "module",
+  "main": "src/lite.js",
+  "bin": {
+    "stackdetect": "src/mcp-stdio.js",
+    "stackdetect-mcp": "src/mcp-stdio.js"
+  },
+  "exports": {
+    ".": "./src/lite.js",
+    "./lite": "./src/lite.js",
+    "./mcp": "./src/mcp-stdio.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src/mcp-stdio.js",
+    "src/lite.js",
+    "src/paid.js",
+    "src/deadline.js",
+    "src/version.js",
+    "README.md",
+    "LICENSE",
+    "logo.svg"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/node.js",
+    "deploy": "wrangler deploy",
+    "mcp": "node src/mcp-stdio.js"
+  },
+  "keywords": [
+    "tech-stack",
+    "technology-detection",
+    "wappalyzer-alternative",
+    "builtwith-alternative",
+    "website-analysis",
+    "lead-enrichment",
+    "sales-intelligence",
+    "cms-detection",
+    "mcp",
+    "mcp-server",
+    "ai-agents",
+    "x402",
+    "usdc",
+    "base",
+    "cloudflare-workers"
+  ],
+  "author": "agentgate-builder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://agentgate-source.pages.dev/x402-stackdetect/"
+  },
+  "homepage": "https://api.youraitools.co/stackdetect",
+  "bugs": {
+    "url": "https://agentgate-source.pages.dev/x402-stackdetect/",
+    "email": "hello@youraitools.co"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@coinbase/x402": "2.1.0",
+    "@hono/node-server": "^1.19.9",
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0",
+    "@x402/fetch": "2.28.0",
+    "@x402/hono": "2.28.0",
+    "hono": "^4.13.13",
+    "viem": "^2.0.0",
+    "wrangler": "^4.86.0",
+    "x402": "1.2.0",
+    "x402-fetch": "1.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@x402/fetch": ">=2.28.0 <3",
+    "@x402/evm": ">=2.28.0 <3",
+    "viem": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@x402/fetch": {
+      "optional": true
+    },
+    "@x402/evm": {
+      "optional": true
+    },
+    "viem": {
+      "optional": true
+    }
+  }
+}

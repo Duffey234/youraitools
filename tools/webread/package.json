@@ -1,0 +1,84 @@
+{
+  "name": "x402-url-to-markdown",
+  "version": "0.1.4",
+  "description": "URL to Markdown for AI agents and LLMs: turn any public web page into clean Markdown (HTML to Markdown, SSRF-safe, robots.txt-aware). MCP server (stdio + remote), zero-dependency library and x402 pay-per-call API ($0.002 USDC on Base).",
+  "mcpName": "io.github.agentgate-builder/x402-url-to-markdown",
+  "type": "module",
+  "main": "src/html2md.js",
+  "bin": {
+    "webread-mcp": "src/mcp-stdio.js",
+    "x402-url-to-markdown": "src/mcp-stdio.js"
+  },
+  "exports": {
+    ".": "./src/html2md.js",
+    "./html2md": "./src/html2md.js",
+    "./safefetch": "./src/safefetch.js",
+    "./robots": "./src/robots.js",
+    "./reader": "./src/reader.js"
+  },
+  "files": [
+    "src/mcp-stdio.js",
+    "src/html2md.js",
+    "src/safefetch.js",
+    "src/robots.js",
+    "src/reader.js",
+    "src/config.js",
+    "README.md",
+    "LICENSE",
+    "logo.svg",
+    "server.json"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/node.js",
+    "deploy": "wrangler deploy",
+    "bazaar": "node scripts/bazaar-index.js",
+    "mcp": "node src/mcp-stdio.js"
+  },
+  "keywords": [
+    "url-to-markdown",
+    "html-to-markdown",
+    "markdown",
+    "web-scraping",
+    "web-scraper",
+    "scraper",
+    "reader",
+    "llm",
+    "rag",
+    "ai-agents",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "x402",
+    "robots-txt"
+  ],
+  "author": "agentgate-builder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://agentgate-source.pages.dev/x402-url-to-markdown/"
+  },
+  "homepage": "https://api.youraitools.co/webread",
+  "bugs": {
+    "url": "https://agentgate-source.pages.dev/x402-url-to-markdown/"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@coinbase/x402": "2.1.0",
+    "@hono/node-server": "^1.19.9",
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0",
+    "@x402/hono": "2.28.0",
+    "hono": "^4.13.13"
+  },
+  "devDependencies": {
+    "@x402/fetch": "2.28.0",
+    "viem": "^2.0.0",
+    "wrangler": "^4.86.0",
+    "x402": "1.2.0",
+    "x402-fetch": "1.2.0"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "name": "concordium-agentgate",
+  "version": "0.2.3",
+  "description": "AI agent identity verification for MCP and x402: check whether an AI agent is registered, Active and Verified in the Concordium Agent Registry (CIS-8004, ERC-8004 compatible). Library, Express middleware, MCP server and hosted pay-per-call API.",
+  "mcpName": "io.github.agentgate-builder/agentgate",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./registry": "./src/registry.js",
+    "./middleware": "./src/middleware.js",
+    "./x402": "./src/x402.js",
+    "./client": "./src/client.js"
+  },
+  "bin": {
+    "agentgate-mcp": "mcp/server.js",
+    "agentgate-check": "src/cli.js"
+  },
+  "files": [
+    "src/",
+    "mcp/",
+    "README.md",
+    "LICENSE",
+    "server.json"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "test:live": "AGENTGATE_LIVE=1 node --test test/*.test.js",
+    "demo": "node examples/demo.js",
+    "demo:live": "node examples/demo.js --live",
+    "mcp": "node mcp/server.js",
+    "check": "node src/cli.js",
+    "sync-docs": "cp src/registry.js docs/registry.js"
+  },
+  "keywords": [
+    "agent-identity",
+    "agent-verification",
+    "ai-agents",
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "x402",
+    "erc-8004",
+    "cis-8004",
+    "concordium",
+    "agent-registry",
+    "a2a",
+    "trust",
+    "middleware",
+    "verification"
+  ],
+  "author": "agentgate-builder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://agentgate-source.pages.dev/agentgate/"
+  },
+  "homepage": "https://api.youraitools.co/agentgate",
+  "bugs": {
+    "url": "https://agentgate-source.pages.dev/agentgate/"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "express": "^5.1.0"
+  }
+}

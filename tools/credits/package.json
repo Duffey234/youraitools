@@ -1,0 +1,20 @@
+{
+  "name": "x402-credits",
+  "version": "0.2.0",
+  "private": true,
+  "description": "YourAITools Credits: prepaid $1 / $5 credit packs (one x402 payment) that the YourAITools x402 agent APIs accept as Authorization: Bearer <key>.",
+  "type": "module",
+  "scripts": { "test": "node --test test/*.test.js", "deploy": "wrangler deploy" },
+  "license": "MIT",
+  "devDependencies": {
+    "@coinbase/x402": "2.1.0",
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0",
+    "@x402/fetch": "2.28.0",
+    "@x402/hono": "2.28.0",
+    "hono": "^4.13.13",
+    "viem": "^2.0.0",
+    "wrangler": "^4.86.0"
+  }
+}

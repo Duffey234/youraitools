@@ -1,0 +1,3 @@
+// Logo and verdict colors shared by the landing page, the card page and the SVG card.
+export const COLORS = { SAFE: '#22c55e', CAUTION: '#f59e0b', DANGER: '#ef4444', UNKNOWN: '#94a3b8' };
+export const LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="TokenVerdict"><rect width="64" height="64" rx="14" fill="#0f172a"/><path d="M32 10l18 7v13c0 11-7.6 20-18 24-10.4-4-18-13-18-24V17z" fill="none" stroke="#38bdf8" stroke-width="3.2" stroke-linejoin="round"/><path d="M23 32l6.5 6.5L42 26" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;

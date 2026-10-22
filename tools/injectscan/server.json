@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.agentgate-builder/x402-prompt-injection-scan",
+  "title": "InjectScan",
+  "description": "Prompt-injection scanner for agents: risk score, categories and spans for text, pages, MCP tools",
+  "version": "0.1.4",
+  "websiteUrl": "https://youraitools.co/guides/prompt-injection-scanner-api",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://injectscan.agentgate.workers.dev/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "x402-prompt-injection-scan",
+      "version": "0.1.4",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}
