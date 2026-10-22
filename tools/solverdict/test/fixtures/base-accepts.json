@@ -1,0 +1,194 @@
+{
+ "webread_v1_read": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "2000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "tokenverdict_v1_deep": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "50000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "pkgguard_v1_package": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "1000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "tokenverdict_v1_quick": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "15000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "domaincheck_v1_email": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "1000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "signcheck_v1_lite": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "5000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "injectscan_v1_scan": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "3000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "stackdetect_v1_detect": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "3000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "pkgguard_v1_scan": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "3000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "agentgate_v1_check-agent": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "5000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "signcheck_v1_check": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "15000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "payguard_v1_address": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "1000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "domaincheck_v1_domain": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "2000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "tokenverdict_v1_lite": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "5000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "solverdict_v1_lite": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "5000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ },
+ "solverdict_v1_check": {
+  "scheme": "exact",
+  "network": "eip155:8453",
+  "amount": "20000",
+  "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "payTo": "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F",
+  "maxTimeoutSeconds": 120,
+  "extra": {
+   "name": "USD Coin",
+   "version": "2"
+  }
+ }
+}

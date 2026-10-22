@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.agentgate-builder/x402-url-to-markdown",
+  "title": "WebRead",
+  "description": "Read any public web page as clean Markdown for LLMs. Respects robots.txt. Free tier; x402 paid API.",
+  "websiteUrl": "https://youraitools.co/guides/pay-per-call-web-scraper-api",
+  "version": "0.1.4",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://webread.agentgate.workers.dev/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "x402-url-to-markdown",
+      "version": "0.1.4",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

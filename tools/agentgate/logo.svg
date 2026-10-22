@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="AgentGate">
+  <title>AgentGate</title>
+  <rect width="128" height="128" rx="28" fill="#0f172a"/>
+  <path d="M30 100V54a34 34 0 0 1 68 0v46" fill="none" stroke="#38bdf8" stroke-width="10" stroke-linecap="round"/>
+  <path d="M48 100V58a16 16 0 0 1 32 0v42" fill="none" stroke="#a78bfa" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="64" cy="76" r="8" fill="#f8fafc"/>
+  <path d="M58 98l6-14 6 14z" fill="#f8fafc"/>
+</svg>

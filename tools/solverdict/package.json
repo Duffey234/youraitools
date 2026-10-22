@@ -1,0 +1,101 @@
+{
+  "name": "@agentgate-builder/solverdict",
+  "version": "0.1.0",
+  "mcpName": "co.youraitools/solverdict",
+  "description": "Solana token safety check for AI agents and MCP: SAFE / CAUTION / DANGER with reasons from mint and freeze authority, Token-2022 traps (permanent delegate, transfer hook, transfer fee, default-frozen, pausable), metadata authority, DEX liquidity and 24 h sells, and holder concentration (wallets vs pools / bonding curves). Free MCP server; full reports via x402 pay-per-call API.",
+  "type": "module",
+  "main": "src/lite.js",
+  "bin": {
+    "solverdict": "src/mcp-stdio.js",
+    "solverdict-mcp": "src/mcp-stdio.js"
+  },
+  "exports": {
+    ".": "./src/lite.js",
+    "./lite": "./src/lite.js",
+    "./mcp": "./src/mcp-stdio.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src/mcp-stdio.js",
+    "src/lite.js",
+    "src/paid.js",
+    "src/deadline.js",
+    "src/version.js",
+    "README.md",
+    "LICENSE",
+    "logo.svg"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/node.js",
+    "deploy": "wrangler deploy",
+    "mcp": "node src/mcp-stdio.js",
+    "build:og": "node tools/gen-og.mjs"
+  },
+  "keywords": [
+    "solana",
+    "token-security",
+    "rug-check",
+    "rugcheck",
+    "honeypot",
+    "token-2022",
+    "spl-token",
+    "pump-fun",
+    "memecoin",
+    "x402",
+    "mcp",
+    "mcp-server",
+    "ai-agents",
+    "trading-agents",
+    "usdc",
+    "cloudflare-workers"
+  ],
+  "author": "agentgate-builder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://agentgate-source.pages.dev/x402-solverdict/"
+  },
+  "homepage": "https://api.youraitools.co/solverdict",
+  "bugs": {
+    "url": "https://agentgate-source.pages.dev/x402-solverdict/",
+    "email": "hello@youraitools.co"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@coinbase/x402": "2.1.0",
+    "@hono/node-server": "^1.19.9",
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0",
+    "@x402/fetch": "2.28.0",
+    "@x402/hono": "2.28.0",
+    "hono": "^4.13.13",
+    "viem": "^2.0.0",
+    "wrangler": "^4.86.0",
+    "x402": "1.2.0",
+    "x402-fetch": "1.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@x402/fetch": ">=2.28.0 <3",
+    "@x402/evm": ">=2.28.0 <3",
+    "viem": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@x402/fetch": {
+      "optional": true
+    },
+    "@x402/evm": {
+      "optional": true
+    },
+    "viem": {
+      "optional": true
+    }
+  }
+}

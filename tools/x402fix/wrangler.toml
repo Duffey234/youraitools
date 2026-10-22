@@ -1,0 +1,114 @@
+name = "x402fix"
+main = "src/worker.js"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+X402_NETWORK = "eip155:8453"
+X402_PRICE_LITE = "$0.005"
+X402_PRICE_CHECK = "$0.02"
+X402_PRICE_SITE = "$0.05"
+PAY_TO = "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F"
+# Solana mainnet payout wallet (public address; USDC token account CM3JgZELvWZMRuxuCT6kNXYPtgCNgGrzQCJs57YbxpAT). Networks are toggled in src/networks.js
+SOLANA_PAY_TO = "FH73WbbUe2UyNzfy72MJs5nT3NxyDf9GrqE7kzjL2Jte"
+FACILITATOR_URL = "https://facilitator.payai.network"
+# x402 v2 facilitator: "payai" (FACILITATOR_URL above) or "cdp" (Coinbase CDP; needs the CDP_API_KEY_ID and
+# CDP_API_KEY_SECRET secrets, falls back to PayAI with a warning if either is missing)
+FACILITATOR = "cdp"
+PUBLIC_URL = "https://x402fix.agentgate.workers.dev"
+# Reverse proxy (youraitools-api Pages project): public URLs become https://<PROXY_HOSTS><PROXY_PREFIX> only for these hosts
+PROXY_HOSTS = "api.youraitools.co"
+PROXY_PREFIX = "/x402fix"
+# x402-trust.com provider verification (public key line; private key kept offline)
+X402_TRUST_TXT = "x402-trust-verification=v1:MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEE3BRokZRE_5VQY8-uCv5Cc6P-FFPNo8kBOO0nSCcw0OL84uR2LpQRaY_3bp2GVU8ph_8cLr9on8kMbbBUyivsA"
+
+# Usage counters (batched, flushed <= once/min/isolate) in a SQLite Durable Object (free plan, no KV quota). No KV binding at all.
+[[durable_objects.bindings]]
+name = "COUNTER"
+class_name = "StatsCounter"
+
+[[migrations]]
+tag = "v1-stats-counter"
+new_sqlite_classes = ["StatsCounter"]
+
+# Free tier: 10 previews / MCP calls per IP per minute
+[[ratelimits]]
+name = "FREE_LIMITER"
+namespace_id = "1015"
+simple = { limit = 10, period = 60 }
+
+# Prepaid credits (Worker "credits", RPC entrypoint CreditsGate): Authorization: Bearer yatc_... debits the route price
+[[services]]
+binding = "CREDITS"
+service = "credits"
+entrypoint = "CreditsGate"
+
+# CounterpartyCheck (Worker "counterparty"): free preview verdict on each payTo in the check tier (best effort)
+[[services]]
+binding = "COUNTERPARTY"
+service = "counterparty"
+
+# Same-account workers.dev hosts cannot be fetched from a Worker (Cloudflare blocks it), so probes of our own tools go
+# through these service bindings (request URL unchanged; see SIBLINGS in worker.js). CREDITS / COUNTERPARTY are above.
+[[services]]
+binding = "AGENTGATE"
+service = "agentgate"
+
+[[services]]
+binding = "WEBREAD"
+service = "webread"
+
+[[services]]
+binding = "INJECTSCAN"
+service = "injectscan"
+
+[[services]]
+binding = "DOMAINCHECK"
+service = "domaincheck"
+
+[[services]]
+binding = "PAYGUARD"
+service = "payguard"
+
+[[services]]
+binding = "PKGGUARD"
+service = "pkgguard"
+
+[[services]]
+binding = "STACKDETECT"
+service = "stackdetect"
+
+[[services]]
+binding = "TOKENVERDICT"
+service = "tokenverdict"
+
+[[services]]
+binding = "SIGNCHECK"
+service = "signcheck"
+
+[[services]]
+binding = "X402TEMPLATE"
+service = "x402-template"
+
+[[services]]
+binding = "SOLVERDICT"
+service = "solverdict"
+
+[[services]]
+binding = "AGENTREADY"
+service = "agentready"
+
+[[services]]
+binding = "PERPRADAR"
+service = "perpradar"
+
+[[services]]
+binding = "TASIGNAL"
+service = "tasignal"
+
+[[services]]
+binding = "LEAKGUARD"
+service = "leakguard"
+
+# New tool: add a binding named after the Worker (upper-case, non-alphanumerics dropped, e.g. agentready -> AGENTREADY)
+# and redeploy x402fix; sibling.js maps <name>.agentgate.workers.dev and api.youraitools.co/<name> to it by convention.

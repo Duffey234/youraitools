@@ -1,0 +1,7 @@
+node_modules/
+.wrangler/
+*.log
+.env
+.DS_Store
+dist/
+.bench-cache/

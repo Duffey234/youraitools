@@ -1,0 +1,38 @@
+name = "credits"
+main = "src/worker.js"
+compatibility_date = "2026-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+X402_NETWORK = "eip155:8453"
+PAY_TO = "0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F"
+# Solana mainnet payout wallet (public address; USDC token account CM3JgZELvWZMRuxuCT6kNXYPtgCNgGrzQCJs57YbxpAT)
+SOLANA_PAY_TO = "FH73WbbUe2UyNzfy72MJs5nT3NxyDf9GrqE7kzjL2Jte"
+FACILITATOR_URL = "https://facilitator.payai.network"
+# x402 v2 facilitator: CDP (CDP_API_KEY_ID / CDP_API_KEY_SECRET worker secrets); x402 v1 (X-PAYMENT) uses FACILITATOR_URL
+FACILITATOR = "cdp"
+PUBLIC_URL = "https://credits.agentgate.workers.dev"
+PROXY_HOSTS = "api.youraitools.co"
+PROXY_PREFIX = "/credits"
+# x402-trust.com provider verification (public key line; private key kept offline)
+X402_TRUST_TXT = "x402-trust-verification=v1:MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEE3BRokZRE_5VQY8-uCv5Cc6P-FFPNo8kBOO0nSCcw0OL84uR2LpQRaY_3bp2GVU8ph_8cLr9on8kMbbBUyivsA"
+
+# One SQLite Durable Object per credits key (balance + recent usage); no KV anywhere (free plan)
+[[durable_objects.bindings]]
+name = "ACCOUNTS"
+class_name = "CreditAccount"
+
+# Usage counters (batched), same StatsCounter pattern as the tools
+[[durable_objects.bindings]]
+name = "COUNTER"
+class_name = "StatsCounter"
+
+[[migrations]]
+tag = "v1-credits"
+new_sqlite_classes = ["CreditAccount", "StatsCounter"]
+
+# Free endpoints (balance, rotate, MCP): 20 per IP per minute
+[[ratelimits]]
+name = "FREE_LIMITER"
+namespace_id = "1020"
+simple = { limit = 20, period = 60 }

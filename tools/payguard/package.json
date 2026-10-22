@@ -1,0 +1,110 @@
+{
+  "name": "@agentgate-builder/payguard",
+  "version": "0.2.0",
+  "description": "OFAC sanctions screening for crypto addresses: check whether a wallet address is on the US Treasury SDN list (EVM, BTC, TRX, SOL and more). Free offline MCP server (sanctioned yes/no); full entity and program details via x402 pay-per-call API.",
+  "type": "module",
+  "main": "src/lite.js",
+  "bin": {
+    "payguard": "src/mcp-stdio.js",
+    "payguard-mcp": "src/mcp-stdio.js"
+  },
+  "exports": {
+    ".": "./src/lite.js",
+    "./lite": "./src/lite.js",
+    "./address": "./src/address.js",
+    "./mcp": "./src/mcp-stdio.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src/mcp-stdio.js",
+    "src/lite.js",
+    "src/paid.js",
+    "src/normalize.js",
+    "src/address.js",
+    "src/version.js",
+    "src/data/sdn-lite.js",
+    "README.md",
+    "LICENSE",
+    "logo.svg"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/node.js",
+    "deploy": "wrangler deploy",
+    "build:sdn": "python3 scripts/build-sdn.py && node scripts/build-lite.mjs && node scripts/gen-examples.mjs",
+    "refresh": "bash scripts/refresh.sh",
+    "bazaar": "node scripts/bazaar-index.js",
+    "mcp": "node src/mcp-stdio.js",
+    "build:lite": "node scripts/build-lite.mjs",
+    "prepack": "node scripts/build-lite.mjs"
+  },
+  "keywords": [
+    "ofac",
+    "sanctions",
+    "sanctions-screening",
+    "ofac-screening",
+    "crypto-address-screening",
+    "wallet-screening",
+    "aml",
+    "kyt",
+    "compliance",
+    "crypto",
+    "mcp",
+    "mcp-server",
+    "ai-agents",
+    "x402",
+    "usdc"
+  ],
+  "author": "agentgate-builder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://agentgate-source.pages.dev/x402-payguard/"
+  },
+  "homepage": "https://api.youraitools.co/payguard",
+  "bugs": {
+    "url": "https://agentgate-source.pages.dev/x402-payguard/"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@noble/hashes": "^1.8.0"
+  },
+  "devDependencies": {
+    "@coinbase/x402": "2.1.0",
+    "@hono/node-server": "^1.19.9",
+    "@solana/kit": "5.5.1",
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0",
+    "@x402/fetch": "2.28.0",
+    "@x402/hono": "2.28.0",
+    "@x402/stellar": "2.28.0",
+    "@x402/svm": "2.28.0",
+    "hono": "^4.13.13",
+    "viem": "^2.0.0",
+    "wrangler": "^4.86.0",
+    "x402": "1.2.0",
+    "x402-fetch": "1.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@x402/evm": ">=2.28.0 <3",
+    "@x402/fetch": ">=2.28.0 <3",
+    "viem": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@x402/fetch": {
+      "optional": true
+    },
+    "@x402/evm": {
+      "optional": true
+    },
+    "viem": {
+      "optional": true
+    }
+  }
+}

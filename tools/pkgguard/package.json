@@ -1,0 +1,101 @@
+{
+  "name": "@agentgate-builder/pkgguard",
+  "version": "0.1.1",
+  "mcpName": "co.youraitools/pkgguard",
+  "description": "Dependency vulnerability and malicious package scanner for AI agents and MCP: check package.json, package-lock.json, requirements.txt, go.mod, Cargo.lock for known CVEs (GHSA, OSV) and malware before npm install. Free MCP server; full advisories via x402 pay-per-call API.",
+  "type": "module",
+  "main": "src/lite.js",
+  "bin": {
+    "pkgguard": "src/mcp-stdio.js",
+    "pkgguard-mcp": "src/mcp-stdio.js"
+  },
+  "exports": {
+    ".": "./src/lite.js",
+    "./lite": "./src/lite.js",
+    "./manifest": "./src/manifest.js",
+    "./mcp": "./src/mcp-stdio.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src/mcp-stdio.js",
+    "src/lite.js",
+    "src/paid.js",
+    "src/manifest.js",
+    "src/deadline.js",
+    "src/version.js",
+    "README.md",
+    "LICENSE",
+    "logo.svg"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/node.js",
+    "deploy": "wrangler deploy",
+    "mcp": "node src/mcp-stdio.js"
+  },
+  "keywords": [
+    "vulnerability-scanner",
+    "dependency-check",
+    "npm-audit",
+    "security-audit",
+    "cve",
+    "osv",
+    "malicious-packages",
+    "supply-chain-security",
+    "sca",
+    "package-lock",
+    "requirements-txt",
+    "mcp",
+    "mcp-server",
+    "ai-agents",
+    "x402"
+  ],
+  "author": "agentgate-builder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://agentgate-source.pages.dev/x402-pkgguard/"
+  },
+  "homepage": "https://api.youraitools.co/pkgguard",
+  "bugs": {
+    "url": "https://agentgate-source.pages.dev/x402-pkgguard/",
+    "email": "hello@youraitools.co"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@coinbase/x402": "2.1.0",
+    "@hono/node-server": "^1.19.9",
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0",
+    "@x402/fetch": "2.28.0",
+    "@x402/hono": "2.28.0",
+    "hono": "^4.13.13",
+    "viem": "^2.0.0",
+    "wrangler": "^4.86.0",
+    "x402": "1.2.0",
+    "x402-fetch": "1.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@x402/fetch": ">=2.28.0 <3",
+    "@x402/evm": ">=2.28.0 <3",
+    "viem": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@x402/fetch": {
+      "optional": true
+    },
+    "@x402/evm": {
+      "optional": true
+    },
+    "viem": {
+      "optional": true
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.agentgate-builder/agentgate",
+  "title": "AgentGate",
+  "description": "Check if an AI agent is registered, Active and Verified in the Concordium Agent Registry (CIS-8004).",
+  "websiteUrl": "https://youraitools.co/guides/x402-agent-verification",
+  "version": "0.2.3",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://agentgate.agentgate.workers.dev/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "concordium-agentgate",
+      "version": "0.2.3",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

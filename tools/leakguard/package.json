@@ -1,0 +1,106 @@
+{
+  "name": "@agentgate-builder/leakguard",
+  "version": "0.1.0",
+  "mcpName": "co.youraitools/leakguard",
+  "description": "Stop AI agents leaking secrets: MCP server + library that finds crypto wallet keys (BIP39 seed phrases with checksum, EVM/Solana private keys, WIF, xprv), API keys (GitHub, AWS, Stripe, OpenAI, Anthropic, Slack, Telegram, npm, JWT, PEM) and PII (cards, IBAN, SSN, email, phone) in text before it goes to an LLM, tool, log or webhook. Runs locally, offline, zero dependencies. Hosted x402 API adds redaction, JSON payloads and leaked-wallet exposure checks.",
+  "type": "module",
+  "main": "src/engine.js",
+  "bin": {
+    "leakguard": "src/mcp-stdio.js",
+    "leakguard-mcp": "src/mcp-stdio.js"
+  },
+  "exports": {
+    ".": "./src/engine.js",
+    "./engine": "./src/engine.js",
+    "./lite": "./src/lite.js",
+    "./mcp": "./src/mcp-stdio.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src/engine.js",
+    "src/data/bip39-en.js",
+    "src/mcp-stdio.js",
+    "src/lite.js",
+    "src/paid.js",
+    "src/deadline.js",
+    "src/version.js",
+    "README.md",
+    "LICENSE",
+    "logo.svg"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/node.js",
+    "deploy": "wrangler deploy",
+    "mcp": "node src/mcp-stdio.js"
+  },
+  "keywords": [
+    "secret-scanning",
+    "secrets",
+    "redaction",
+    "pii",
+    "pii-redaction",
+    "dlp",
+    "seed-phrase",
+    "private-key",
+    "wallet-security",
+    "ai-agents",
+    "llm-security",
+    "mcp",
+    "mcp-server",
+    "x402",
+    "usdc",
+    "cloudflare-workers"
+  ],
+  "author": "agentgate-builder",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://agentgate-source.pages.dev/x402-leakguard/"
+  },
+  "homepage": "https://api.youraitools.co/leakguard",
+  "bugs": {
+    "url": "https://agentgate-source.pages.dev/x402-leakguard/",
+    "email": "hello@youraitools.co"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@coinbase/x402": "2.1.0",
+    "@hono/node-server": "^1.19.9",
+    "@x402/core": "2.28.0",
+    "@x402/evm": "2.28.0",
+    "@x402/extensions": "2.28.0",
+    "@x402/fetch": "2.28.0",
+    "@x402/hono": "2.28.0",
+    "hono": "^4.13.13",
+    "viem": "^2.0.0",
+    "wrangler": "^4.86.0",
+    "x402": "1.2.0",
+    "x402-fetch": "1.2.0",
+    "@noble/curves": "^1.9.0",
+    "@noble/hashes": "^1.8.0",
+    "@scure/bip32": "^1.7.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@x402/fetch": ">=2.28.0 <3",
+    "@x402/evm": ">=2.28.0 <3",
+    "viem": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@x402/fetch": {
+      "optional": true
+    },
+    "@x402/evm": {
+      "optional": true
+    },
+    "viem": {
+      "optional": true
+    }
+  }
+}

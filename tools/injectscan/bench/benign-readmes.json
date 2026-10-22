@@ -1,0 +1,605 @@
+{
+  "source": "README.md of 150 GitHub repositories with 3k-10k stars (search sorted by recently updated, 2026-10-21), pinned to a commit",
+  "repos": [
+    {
+      "repo": "patriciogonzalezvivo/glslViewer",
+      "sha": "a812e59e935ab0748d980d44387e63b10939fe2c"
+    },
+    {
+      "repo": "RunMaestro/Maestro",
+      "sha": "d74614e8f2cec61aae8461a8dfcfde45429c2379"
+    },
+    {
+      "repo": "firebase/firebase-tools",
+      "sha": "4efb95867d64c585e77ba929a27f862b34ed9f04"
+    },
+    {
+      "repo": "CVEProject/cvelistV5",
+      "sha": "5b428bed3e15fb7b8f920cc73fc2fb3e24f71501"
+    },
+    {
+      "repo": "sorbet/sorbet",
+      "sha": "d96b88bdd1dd142760da924c740e3742b223f2e9"
+    },
+    {
+      "repo": "flutter/packages",
+      "sha": "f9624a51a9033485344f1360c44f748bca612c5d"
+    },
+    {
+      "repo": "statamic/cms",
+      "sha": "d66e6602c7739a3ba52b286496bac8a50f85d776"
+    },
+    {
+      "repo": "rstudio/rstudio",
+      "sha": "a63c3b839f1d04842a8ca4a15c70d8aaf6d88527"
+    },
+    {
+      "repo": "zapplyjobs/Internships-2027",
+      "sha": "b9569c01a0bb74649aceb2e9b68b98a07cf7a6bb"
+    },
+    {
+      "repo": "Qiskit/qiskit",
+      "sha": "038b27ea51e099aad3b8a1ab2d52541b51c29183"
+    },
+    {
+      "repo": "marin-community/marin",
+      "sha": "e524e9e12773de7be3f1e7fd8fc80c8d356ef275"
+    },
+    {
+      "repo": "NVIDIA/garak",
+      "sha": "64fa9e1fbd24a6c8aa63728b15b4ed6d8ec9eb2e"
+    },
+    {
+      "repo": "fleetdm/fleet",
+      "sha": "e9c58b68b99fa7f4dd53cea0bed4dc6a89cc434c"
+    },
+    {
+      "repo": "lightdash/lightdash",
+      "sha": "ba2c8a7c9e91be3de54fcaa5a66e179140e072c8"
+    },
+    {
+      "repo": "arkadiyt/bounty-targets-data",
+      "sha": "eea523c324bc421e6ec5c8611c88e4324ba0bcee"
+    },
+    {
+      "repo": "facebook/memlab",
+      "sha": "69910245ce1041b1a44e53e2ecc246fe7f71d4a1"
+    },
+    {
+      "repo": "boto/boto3",
+      "sha": "69e35c33ecdb461f226c479190ee8909b10a279c"
+    },
+    {
+      "repo": "versity/versitygw",
+      "sha": "27b962f8e15b4eafb6df5f1e29ab5402c386597e"
+    },
+    {
+      "repo": "xemu-project/xemu",
+      "sha": "aa54c34cae1c09410d74c69a44210a9867fe2d16"
+    },
+    {
+      "repo": "agent-substrate/substrate",
+      "sha": "22acba54bd7a75e1e51b5a742f05306e2b13baba"
+    },
+    {
+      "repo": "docker-library/official-images",
+      "sha": "4c5bb0a9ed72fd3487d6245ea0911588038c9d58"
+    },
+    {
+      "repo": "facebookincubator/velox",
+      "sha": "968ec27fad010fccd624e43638c98ce979e2b61c"
+    },
+    {
+      "repo": "sonos/tract",
+      "sha": "4165e490832118a0ee6cd949a33cf064fb1dcb6c"
+    },
+    {
+      "repo": "google-ai-edge/LiteRT",
+      "sha": "447d944d503c35b2da6bedcfc2dccd2d8a1f3c82"
+    },
+    {
+      "repo": "nicholas-fedor/watchtower",
+      "sha": "5bd686d50780f008502824172a0056e08d83b5f0"
+    },
+    {
+      "repo": "Azure/azure-rest-api-specs",
+      "sha": "ec877ee0e8e77b284f333f186cfa2a6e0250fbb9"
+    },
+    {
+      "repo": "SenteLabsAI/OpenExecutive",
+      "sha": "653d80e2d85e2c1cc7c8ce0ce4e90e34f68f3609"
+    },
+    {
+      "repo": "tconbeer/harlequin",
+      "sha": "4de7b71b22d3a502ac2cfb4eb3abb237d36a7f8d"
+    },
+    {
+      "repo": "zammad/zammad",
+      "sha": "0f70b92178331f279922025cb6292fb74b4cbf7c"
+    },
+    {
+      "repo": "gmh5225/awesome-game-security",
+      "sha": "331faeccd0b0006459767bba61c51de549f85049"
+    },
+    {
+      "repo": "mermaid-js/mermaid-live-editor",
+      "sha": "eb4141dd51247259e95ecd890c1bf3dabf314913"
+    },
+    {
+      "repo": "leits/MeetingBar",
+      "sha": "93a0071b826c088f55ff177d20de1e9cc7ae3374"
+    },
+    {
+      "repo": "Alvin9999-newpac/fanqiang",
+      "sha": "226382b1a37f04900665cb09ca19589e5d87d6ef"
+    },
+    {
+      "repo": "reviewdog/reviewdog",
+      "sha": "ff74627700c8e3d942f04a952b50c96a38dc324a"
+    },
+    {
+      "repo": "AcademySoftwareFoundation/openvdb",
+      "sha": "8ea61107d6df0abeca658f274d862a6a3b979a43"
+    },
+    {
+      "repo": "signalapp/libsignal",
+      "sha": "e297a56a0a8e530c16401c046841fcdbdf585898"
+    },
+    {
+      "repo": "sparklemotion/mechanize",
+      "sha": "1d5ef8d44b6d34888de014fd6940eae8443f1dfd"
+    },
+    {
+      "repo": "androidx/androidx",
+      "sha": "04ed7cd410a79b74c3858454a42d54a2f2b42648"
+    },
+    {
+      "repo": "roc-lang/roc",
+      "sha": "99bbe7f45948ca2e094217a44bd6cec7db839c07"
+    },
+    {
+      "repo": "srizzon/git-city",
+      "sha": "af39fc26f82e22f2c129b29531677bf57ee2dc95"
+    },
+    {
+      "repo": "storytold/effectcraft",
+      "sha": "cee4c16c8ad53621aaf25c037564e77a2dd37090"
+    },
+    {
+      "repo": "NVIDIA/Model-Optimizer",
+      "sha": "dc6f455735c6f8715d931755eceb87ad8245843c"
+    },
+    {
+      "repo": "gyroflow/gyroflow",
+      "sha": "3c201a2fa38ffae6c4346bd310c100329a44d821"
+    },
+    {
+      "repo": "bigbluebutton/bigbluebutton",
+      "sha": "d889d2eb68f1639a52d1eadb8673487671b74ab5"
+    },
+    {
+      "repo": "Expensify/App",
+      "sha": "d55157e774780dd9806750beb3acc7f45d199209"
+    },
+    {
+      "repo": "elsa-workflows/elsa-core",
+      "sha": "6bf22529cc1b6475fdfbec0d2af6d3de875f5e63"
+    },
+    {
+      "repo": "agentgateway/agentgateway",
+      "sha": "3d6b332fc0bc77f29ae67bf83cb2ada62906480a"
+    },
+    {
+      "repo": "elie222/rakazo",
+      "sha": "5f58131d4ec7449d8d9bed84bc44b68847039792"
+    },
+    {
+      "repo": "sass/dart-sass",
+      "sha": "b10205ed8391f11cb9ce8b7c3d6464f842491ce8"
+    },
+    {
+      "repo": "google-ai-edge/LiteRT-LM",
+      "sha": "0c604e76f89ca67caf7f07032d22cef52b4cbb03"
+    },
+    {
+      "repo": "pytorch/executorch",
+      "sha": "141f543d4c2bcdacc1f8a1b2e7238193de8158fa"
+    },
+    {
+      "repo": "kenn-io/agentsview",
+      "sha": "ec67efb859e6acdbfeac523fc923529035bfb41f"
+    },
+    {
+      "repo": "cloudflare/workerd",
+      "sha": "ea0b40930552f284c319e552803e7f9a28ad3a36"
+    },
+    {
+      "repo": "rlaope/oh-my-hermes",
+      "sha": "571290601c3f29c1e88abe7a5484a8eba90abd9f"
+    },
+    {
+      "repo": "weave-os/router",
+      "sha": "84be931eb22282baf4a880c6e765852e597dd961"
+    },
+    {
+      "repo": "MetaMask/metamask-mobile",
+      "sha": "eff549ff9eddb169f54d8be254216b8973290490"
+    },
+    {
+      "repo": "apache/datafusion",
+      "sha": "86e10a5499b1d17d8ad746c247faeeb7913c64e8"
+    },
+    {
+      "repo": "posit-dev/positron",
+      "sha": "d4940adc26476e25f6d92cd1e0006ed293dc01f3"
+    },
+    {
+      "repo": "OpenMW/openmw",
+      "sha": "6901b0a0da3187518801f932e69a1741273c1d5d"
+    },
+    {
+      "repo": "wikimedia/apps-android-wikipedia",
+      "sha": "a1dab98d9978ce3149c3264c62ec48fcfa0fbaf8"
+    },
+    {
+      "repo": "runtipi/runtipi",
+      "sha": "5e4d7a5bb1d537782191fc1fbcb7e30c0423d566"
+    },
+    {
+      "repo": "googleapis/google-cloud-node",
+      "sha": "78ef17d66b1e5537e0d20bb5f5d7ee30b2c08a00"
+    },
+    {
+      "repo": "letsencrypt/boulder",
+      "sha": "f6d71764d4c5b118f5d63694e1bd1f8f852489fa"
+    },
+    {
+      "repo": "kagent-dev/kagent",
+      "sha": "8392184232e9c78196433a34b1fd3b33db5fcb97"
+    },
+    {
+      "repo": "pytorch/TensorRT",
+      "sha": "395492df3d696ef33fd10d2e9a8384692004f055"
+    },
+    {
+      "repo": "ardatan/graphql-tools",
+      "sha": "e03a2d02885584685a0f3ddfb12cdd7c33e31994"
+    },
+    {
+      "repo": "archestra-ai/archestra",
+      "sha": "8731d4decf17b78b6896a7d00730571657ef5a6a"
+    },
+    {
+      "repo": "junit-team/junit-framework",
+      "sha": "21b4a5fac91d0c4e684cedba0c0ce1ceb8809315"
+    },
+    {
+      "repo": "spiceai/spiceai",
+      "sha": "e040b4aec6358aefd00c8472678a94d42f716470"
+    },
+    {
+      "repo": "macro-inc/macro",
+      "sha": "b389d5a5e7748d3a1df4d1a65c99a0831d1500d5"
+    },
+    {
+      "repo": "growthbook/growthbook",
+      "sha": "dd047c46495a39315be86b52ca3484dbd42dfd77"
+    },
+    {
+      "repo": "schemathesis/schemathesis",
+      "sha": "dabf1154d5f7cfd8a4f6bd3cf9f01bbbf239f127"
+    },
+    {
+      "repo": "xberg-io/xberg",
+      "sha": "a74d054fcb5b817452950b73554bc3bd52daf067"
+    },
+    {
+      "repo": "BuilderIO/agent-native",
+      "sha": "9205a7801d55a47fb048af4707f27d42273aaf77"
+    },
+    {
+      "repo": "milind-soni/OpenMausBot",
+      "sha": "4520894c575562503247e51d275b4696fd1fee8d"
+    },
+    {
+      "repo": "bitpay/bitcore",
+      "sha": "29b4769297cc4aa330745a6386691a481ad15fd3"
+    },
+    {
+      "repo": "langwatch/langwatch",
+      "sha": "84839e8c7b0a57ec396940e5b4a7b65897e3bade"
+    },
+    {
+      "repo": "FEX-Emu/FEX",
+      "sha": "ca389e06a6b7c697c8f40f8fde822ae8d8b328cc"
+    },
+    {
+      "repo": "anomalyco/models.dev",
+      "sha": "f7f40059f6997ab012c8f399076da4ff1da119f8"
+    },
+    {
+      "repo": "perixtar/Tech-OA-Interview-Questions",
+      "sha": "9c33fb93cafd44c954ebbd0ba07dc04bb285a42f"
+    },
+    {
+      "repo": "astral-sh/python-build-standalone",
+      "sha": "cc675f492d5313cd73cd1c465281d93706dd433e"
+    },
+    {
+      "repo": "rizonesoft/Notepad3",
+      "sha": "5a2ac21682f14a6cc191544c0cb0de0c65dc72f4"
+    },
+    {
+      "repo": "OGRECave/ogre",
+      "sha": "10d76cd8c90d7b9b1b2dcc5f5539f31c9aacff14"
+    },
+    {
+      "repo": "fern-api/fern",
+      "sha": "c310faafffdbc66bfa916483c67ec12b008a2097"
+    },
+    {
+      "repo": "pamburus/hl",
+      "sha": "7500a951324f6ec41eee5488266b4e95ab5caa8a"
+    },
+    {
+      "repo": "microsoft/rushstack",
+      "sha": "37aec0ac881c965ab60745984b20ae1b30e83796"
+    },
+    {
+      "repo": "NeoApplications/Neo-Store",
+      "sha": "47614352a02cf639f639886b02abfdef33ad8473"
+    },
+    {
+      "repo": "microsoft/apm",
+      "sha": "4adaa21f5a369298e316356891d2c65181f02560"
+    },
+    {
+      "repo": "metabrainz/picard",
+      "sha": "757494b54ec671a1350ae479edf4e3d72d882a94"
+    },
+    {
+      "repo": "kanboard/kanboard",
+      "sha": "e197e71af4ff9f371b931ab0338b2b41827e6394"
+    },
+    {
+      "repo": "ilyamiro/serpantinum",
+      "sha": "6846b13763cd6b6e39e4fdf88021b726756c6f7c"
+    },
+    {
+      "repo": "autobrr/qui",
+      "sha": "a37d4143f18a31d150a719ebccd25d34da35738e"
+    },
+    {
+      "repo": "mne-tools/mne-python",
+      "sha": "b46a31b407a35c4cd2c56a92988f7cf59405bedc"
+    },
+    {
+      "repo": "grommet/grommet",
+      "sha": "dcdbaffb0eac2eacd925d22e662b792f746e0737"
+    },
+    {
+      "repo": "looplj/axonhub",
+      "sha": "48984732291eba882d7d4d964c814e2e783311a7"
+    },
+    {
+      "repo": "vercel/geist-font",
+      "sha": "1d6dfdb6e58c0ddd841c1e24e59aef01ec3916e4"
+    },
+    {
+      "repo": "ARahim3/DigUp",
+      "sha": "92b5a631e1d279ac92ff31c9affd73d5c122d296"
+    },
+    {
+      "repo": "qt/qtbase",
+      "sha": "79459ab681989d53d3cc187e4ee6921fea52f8a8"
+    },
+    {
+      "repo": "harbor-framework/harbor",
+      "sha": "dd8815755a61e849ad0f146ae85eb4aaff4fe61f"
+    },
+    {
+      "repo": "raullenchai/Rapid-MLX",
+      "sha": "017341dd4e2ead075c2105e379cae7b39cefcf97"
+    },
+    {
+      "repo": "FStarLang/FStar",
+      "sha": "181c6984de940d9bc28c0e46655476a1611bf31a"
+    },
+    {
+      "repo": "facebook/sapling",
+      "sha": "89ebe6f9820ae462083d4acf2f1d3d1715c34604"
+    },
+    {
+      "repo": "borglab/gtsam",
+      "sha": "126acd405e2c4f2cb160e5677b6ea4166ed980f8"
+    },
+    {
+      "repo": "TanStack/db",
+      "sha": "bab7ed95c495b638d7d63a8018c1af573cfd244c"
+    },
+    {
+      "repo": "tensorflow/tflite-micro",
+      "sha": "7cfb3088c48be564b40d6a06eeb1d47f516b8ee2"
+    },
+    {
+      "repo": "RookieEnough/Orion-Store",
+      "sha": "576ad5f288beaf339a43d437c9c4f0244d6da564"
+    },
+    {
+      "repo": "tangency-labs/solidcraft",
+      "sha": "c54b711345401cfb41e0285db0dc0cbc8ffa9ea9"
+    },
+    {
+      "repo": "maplibre/martin",
+      "sha": "59e189a63456cf73cbc393ccce49eb92bb807efb"
+    },
+    {
+      "repo": "vercel/eve",
+      "sha": "87962a09f93c94280b0e72450885fdb51d818749"
+    },
+    {
+      "repo": "Dicklesworthstone/destructive_command_guard",
+      "sha": "882eea6d955588aa199ecaccae0bb5d2774078bb"
+    },
+    {
+      "repo": "NVIDIA/skills",
+      "sha": "69abc1503d755f9c778e4c884554aea3bd83c131"
+    },
+    {
+      "repo": "astropy/astropy",
+      "sha": "7d7cf6d2d3e8b1e381e980278d071067b4b25241"
+    },
+    {
+      "repo": "hairyhenderson/gomplate",
+      "sha": "67029b39d77aaa88db56b904662acbc559e81edb"
+    },
+    {
+      "repo": "NVIDIA/warp",
+      "sha": "ae6bef512833f9229f66669d4b5044eaeb64656d"
+    },
+    {
+      "repo": "nyblnet/bento",
+      "sha": "aab31c23a477fecf9b29d5f5b15f4fa105f384f9"
+    },
+    {
+      "repo": "ethereum/ethereum-org-website",
+      "sha": "9c82bea6ad613e9a18800c759b53182ae5da2f03"
+    },
+    {
+      "repo": "frangoteam/FUXA",
+      "sha": "874a68a59c39baa72fb098e97280d1dcd82b83bf"
+    },
+    {
+      "repo": "Alexey-T/CudaText",
+      "sha": "0305a6345dd198ff8fed44ed86fc49046e901002"
+    },
+    {
+      "repo": "SQLMesh/sqlmesh",
+      "sha": "f6527ffbd8d54d91e26fab7d36c8f4a061bc6451"
+    },
+    {
+      "repo": "CodeWithCJ/SparkyFitness",
+      "sha": "454b2380432c20476354de1b9e54bae99d961aa6"
+    },
+    {
+      "repo": "rrousselGit/riverpod",
+      "sha": "1d94ab3d86adb708a1e8181e920d60e4474e5f40"
+    },
+    {
+      "repo": "Provenance-Emu/Provenance",
+      "sha": "fdf582bda3685f8be48fd93d98c8a3a250ad7427"
+    },
+    {
+      "repo": "killercup/cargo-edit",
+      "sha": "83e957c3a6ddb48b022ab5b7ac0c6042e5aa3e1f"
+    },
+    {
+      "repo": "ankane/pghero",
+      "sha": "7f4fa8a81541dbcc21226f980c10a19c5870aff8"
+    },
+    {
+      "repo": "omnirush-ai/omnirush-gui",
+      "sha": "6be6fda7f32a098042962085edb8d6539b699db6"
+    },
+    {
+      "repo": "The-OpenROAD-Project/OpenROAD",
+      "sha": "2f6f0a9d92e9cab42a68e10968d6f3894da982b1"
+    },
+    {
+      "repo": "pomerium/pomerium",
+      "sha": "a4a75b9221fad37d3afe75ccffa32defcdd0a1ed"
+    },
+    {
+      "repo": "tuist/tuist",
+      "sha": "254ac23e2c1f332fcd9035d35823ad1a80834bf6"
+    },
+    {
+      "repo": "ydb-platform/ydb",
+      "sha": "bbf20dbfc020f631ce866fad45443b4803dfab36"
+    },
+    {
+      "repo": "PerryTS/perry",
+      "sha": "640275e84ab94f0c6b2536968717c09bc2e917ed"
+    },
+    {
+      "repo": "logancyang/obsidian-copilot",
+      "sha": "5b909a65a45f6ef80e22eadb7c93d7e72a5e4518"
+    },
+    {
+      "repo": "microsoft/vscode-docs",
+      "sha": "cb1e00b26932efeb8d9db844ae2d089621ed127f"
+    },
+    {
+      "repo": "newton-physics/newton",
+      "sha": "3f68615860867a1ab5b5b1cdc96e488e66811745"
+    },
+    {
+      "repo": "kirodotdev/KiroCrew",
+      "sha": "e5914c56f9ae7ed0775c19e0e712b585eb17dd88"
+    },
+    {
+      "repo": "uber/NullAway",
+      "sha": "24314016c8d31320c1392cac49d6f0a654c87046"
+    },
+    {
+      "repo": "fastmail/Squire",
+      "sha": "af9ef36d944082615c9dd28760d8aafa6308186e"
+    },
+    {
+      "repo": "totec448-spec/chat-on-steroids",
+      "sha": "f50a8d30c1903193a9346f155431b4c57e730955"
+    },
+    {
+      "repo": "buildroot/buildroot",
+      "sha": "59f5e16ffebacd111d5fb84f110e15554b9a209d"
+    },
+    {
+      "repo": "junhoyeo/tokscale",
+      "sha": "2afee11e545e98a588b678f1cd56c2c5647457cb"
+    },
+    {
+      "repo": "canonical/multipass",
+      "sha": "5f94b7ef94c64a8c28cac7f82746c7bd47e64d0f"
+    },
+    {
+      "repo": "space-wizards/space-station-14",
+      "sha": "3043980ab4e6e1f882d5e8675a22b96a422c5cc3"
+    },
+    {
+      "repo": "HypothesisWorks/hypothesis",
+      "sha": "ca32866abd97b809643113700c50f0ac0ff48fb4"
+    },
+    {
+      "repo": "oumi-ai/oumi",
+      "sha": "f632f4f48bd54883050b00e2e647e66dc88b7477"
+    },
+    {
+      "repo": "Gentleman-Programming/engram",
+      "sha": "9739f234d5f6035e601998c4fbbbcec6c61a4575"
+    },
+    {
+      "repo": "model-checking/kani",
+      "sha": "0be06f3ddf0410656410658ca4eeb9071ff79f1d"
+    },
+    {
+      "repo": "ddev/ddev",
+      "sha": "677a140256699ee8400a4d9b967ada3dc922ba22"
+    },
+    {
+      "repo": "WebAssembly/spec",
+      "sha": "a550c39563a1f8af35131591a998f78efff4605e"
+    },
+    {
+      "repo": "apache/pinot",
+      "sha": "30cc49731420a8ae1ae80b226d7d3db333edac4e"
+    },
+    {
+      "repo": "peasoft/NoMoreWalls",
+      "sha": "b4d86956f202054dea2d7b0d9582362cc265010e"
+    },
+    {
+      "repo": "M66B/FairEmail",
+      "sha": "45bfb33b351c669effb77c13f0438e83483951af"
+    }
+  ]
+}
