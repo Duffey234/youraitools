@@ -1,18 +1,78 @@
 # PayGuard: OFAC sanctions screening for crypto addresses (MCP server + x402 API)
 
 > **Start here:** copy-paste MCP configs for Claude, Cursor and Windsurf, x402 client code, AgentKit and LangChain wrappers: https://agentgate-source.pages.dev/start/  
-> API: https://api.youraitools.co/payguard · fallback (same Worker): https://payguard.agentgate.workers.dev · npm: `@agentgate-builder/payguard`
+> API: https://api.youraitools.co/payguard · fallback (same Worker): https://payguard.agentgate.workers.dev · source: https://agentgate-source.pages.dev/x402-payguard/ (MIT, self-host: [run from source](#self-host-run-from-source-no-npm))
 
 **OFAC SDN sanctions screening for crypto addresses, for AI agents and payment flows, paid per call over [x402](https://docs.x402.org).**
 One call reports whether an address appears in the US Treasury OFAC Specially Designated Nationals (SDN) list, and if so which entity, which sanctions programs and since when.
 
 - Live API: https://api.youraitools.co/payguard (fallback: https://payguard.agentgate.workers.dev)
-- Price: **$0.001 USDC** per address (`/v1/address`), **$0.01 USDC** per batch of up to 50 (`/v1/batch`), on Base (eip155:8453). Invalid input is never charged.
-- Free tier: `/v1/preview` (sanctioned true/false + chain guess) and a remote MCP server at `/mcp` (10 calls/min per IP).
-- Local MCP (stdio): `npx -y @agentgate-builder/payguard`. Free and offline: the same verdict as the free preview (sanctioned true/false, match count, chain guess) from a bundled list snapshot. Optional full details through the paid API with your own wallet ([below](#mcp)).
-- Source: https://agentgate-source.pages.dev/x402-payguard/ (MIT) · npm: [@agentgate-builder/payguard](https://www.npmjs.com/package/@agentgate-builder/payguard) · all our tools: https://youraitools.co/built-by-us
+- Price: **$0.001 USDC** per address (`/v1/address`), **$0.01 USDC** per batch of up to 50 (`/v1/batch`), in USDC on Base, Polygon, Arbitrum One or Solana (x402 v2; the legacy x402 v1 body lists Base only). Invalid input is never charged.
+- Free tier: 30 calls/day, then $0.001 per call in USDC. The remote MCP server at `/mcp` returns full results for 30 tool calls/day per IP; `/v1/preview` (sanctioned true/false + chain guess) stays free at 10 calls/min per IP.
+- Local MCP (stdio), self-hosted: [run from source](#self-host-run-from-source-no-npm) with `node src/mcp-stdio.js` or Docker. Free and offline: the same verdict as the free preview (sanctioned true/false, match count, chain guess) from a bundled list snapshot. Optional full details through the paid API with your own wallet ([below](#mcp)).
+- Source: https://agentgate-source.pages.dev/x402-payguard/ (MIT; git clone or tarball) · all our tools: https://youraitools.co/built-by-us
 
 > Informational screening against public OFAC SDN data. Not legal advice and not a compliance program.
+
+## Remote MCP: free tier + one-line install
+
+Free tier: 30 calls/day per IP, then $0.001 per address ($0.01 per batch of 50) in USDC over x402. Free calls return full results (SDN entity, programs, list date, checksum); each free result carries an `upgrade` field (and a last text line) with the calls left today. Call 31 returns a `payment_required` (402) tool result pointing to the paid x402 route. Tools: `screen_address`, `screen_batch`. Endpoint: `https://api.youraitools.co/payguard/mcp` (Streamable HTTP, stateless).
+
+Claude Code:
+
+```bash
+claude mcp add --transport http payguard https://api.youraitools.co/payguard/mcp
+```
+
+Claude Desktop: Settings > Connectors > Add custom connector with the URL above, or in `claude_desktop_config.json`:
+
+```json
+{ "mcpServers": { "payguard": { "command": "npx", "args": ["-y", "mcp-remote", "https://api.youraitools.co/payguard/mcp"] } } }
+```
+
+Cursor (`~/.cursor/mcp.json`), or one click: [Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=payguard&config=eyJ1cmwiOiJodHRwczovL2FwaS55b3VyYWl0b29scy5jby9wYXlndWFyZC9tY3AifQ%3D%3D)
+
+```json
+{ "mcpServers": { "payguard": { "url": "https://api.youraitools.co/payguard/mcp" } } }
+```
+
+## Self-host: run from source (no npm)
+
+The stdio MCP server runs fully offline from the source. You need Node.js 20+ (or Docker). Nothing is fetched from the npm registry for PayGuard itself.
+
+```bash
+# 1. Get the source: git clone, or the tarball
+git clone https://agentgate-source.pages.dev/x402-payguard/x402-payguard.git payguard
+#   or: curl -sL https://agentgate-source.pages.dev/x402-payguard/x402-payguard.tar.gz | tar xz && mv x402-payguard payguard
+cd payguard
+
+# 2. Install the runtime dependencies from the lockfile
+npm ci --omit=dev --ignore-scripts
+
+# 3. Run the stdio MCP server (newline-delimited JSON-RPC on stdin/stdout)
+node src/mcp-stdio.js
+```
+
+Point your MCP client at it (use the absolute path of your checkout):
+
+```json
+{ "mcpServers": { "payguard": { "command": "node", "args": ["/absolute/path/to/payguard/src/mcp-stdio.js"] } } }
+```
+
+Claude Code: `claude mcp add payguard -- node /absolute/path/to/payguard/src/mcp-stdio.js`
+
+Docker (the image runs the same stdio server):
+
+```bash
+docker build -t payguard-mcp .
+docker run -i --rm payguard-mcp
+```
+
+```json
+{ "mcpServers": { "payguard": { "command": "docker", "args": ["run", "-i", "--rm", "payguard-mcp"] } } }
+```
+
+You can also run the full HTTP API yourself (`npm ci && npx wrangler dev`, or deploy to your own Cloudflare account with `npx wrangler deploy`).
 
 ## Why
 
@@ -69,38 +129,38 @@ if (r.sanctioned) holdForReview(recipient, r.matches);
 
 ```json
 { "mcpServers": { "payguard": { "type": "http", "url": "https://api.youraitools.co/payguard/mcp" } } }
-{ "mcpServers": { "payguard": { "command": "npx", "args": ["-y", "@agentgate-builder/payguard"] } } }
+{ "mcpServers": { "payguard": { "command": "node", "args": ["/absolute/path/to/payguard/src/mcp-stdio.js"] } } }
 ```
 
-Tools `screen_address` (remote and stdio) and `screen_addresses` (stdio, up to 50).
+Tools: remote `screen_address` and `screen_batch` (up to 50, counts as one free call); stdio `screen_address` and `screen_addresses` (up to 50).
 
-| | Remote `/mcp` | stdio (npm), default | stdio with `PAYGUARD_X402_PRIVATE_KEY` |
+| | Remote `/mcp` | stdio (self-hosted), default | stdio with `PAYGUARD_X402_PRIVATE_KEY` |
 |---|---|---|---|
-| Cost | free, 10 calls/min per IP | free, offline, unlimited | $0.001 per address, $0.01 per batch (USDC on Base, from your wallet) |
-| Returns | sanctioned true/false, match count, chain guess | same, from the list snapshot bundled in the installed version (`list_updated_at`) | full result: SDN entity, type, uid, programs, list date, checksum; list refreshed daily |
+| Cost | free: 30 calls/day per IP (burst 10/min), then $0.001 per address in USDC over x402 | free, offline, unlimited | $0.001 per address, $0.01 per batch (USDC on Base, from your wallet) |
+| Returns | full result (SDN entity, type, uid, programs, list date, checksum) | sanctioned true/false, match count, chain guess, from the list snapshot bundled in the installed version (`list_updated_at`) | full result: SDN entity, type, uid, programs, list date, checksum; list refreshed daily |
 
-The free tiers don't include entity, program or date details. Those come from the paid endpoint https://api.youraitools.co/payguard/v1/address, which every offline result points to (`full_details`).
+The offline stdio server and `/v1/preview` don't include entity, program or date details. Those come from the remote MCP free tier (30/day) or the paid endpoint https://api.youraitools.co/payguard/v1/address, which every offline result points to (`full_details`).
 
-**Paid mode in the stdio server.** Set `PAYGUARD_X402_PRIVATE_KEY` (or `X402_PRIVATE_KEY`) to the private key of a Base wallet holding a little USDC, and add the optional x402 client packages:
+**Paid mode in the stdio server.** Set `PAYGUARD_X402_PRIVATE_KEY` (or `X402_PRIVATE_KEY`) to the private key of a Base wallet holding a little USDC, and add the optional x402 client packages in your checkout (`npm install @x402/fetch @x402/evm viem`):
 
 ```json
 { "mcpServers": { "payguard": {
-  "command": "npx",
-  "args": ["-y", "-p", "@agentgate-builder/payguard", "-p", "@x402/fetch", "-p", "@x402/evm", "-p", "viem", "payguard"],
+  "command": "node",
+  "args": ["/absolute/path/to/payguard/src/mcp-stdio.js"],
   "env": { "PAYGUARD_X402_PRIVATE_KEY": "0x<key of a wallet with a few cents of USDC on Base>" } } } }
 ```
 
-The server then pays the hosted API per call over x402 with [`@x402/fetch`](https://www.npmjs.com/package/@x402/fetch). Guards: Base USDC only, at most $0.01 per payment, and only to PayGuard's pay-to address. Invalid input is rejected locally and never paid for. If a paid call fails, you get the offline preview plus the error. Use a dedicated low-balance wallet: the key stays in your MCP client's config and is never logged or sent anywhere except as an x402 payment signature. `PAYGUARD_API_URL` overrides the endpoint (e.g. the workers.dev fallback).
+The server then pays the hosted API per call over x402 with [`@x402/fetch`](https://www.npmjs.com/package/@x402/fetch). Guards: Base USDC only (the stdio client pays on Base; the hosted API also accepts Polygon, Arbitrum One and Solana), at most $0.01 per payment, and only to PayGuard's pay-to address. Invalid input is rejected locally and never paid for. If a paid call fails, you get the offline preview plus the error. Use a dedicated low-balance wallet: the key stays in your MCP client's config and is never logged or sent anywhere except as an x402 payment signature. `PAYGUARD_API_URL` overrides the endpoint (e.g. the workers.dev fallback).
 
 ### Library
 
 ```js
-import { previewAddress } from '@agentgate-builder/payguard';
+import { previewAddress } from './payguard/src/lite.js'; // from your checkout
 previewAddress('0x098B716B8Aaf21512996dC57EB0615e2383E2f96');
 // { sanctioned: true, match_count: 1, chain: { guess: 'evm', ... }, tier: 'preview', full_details: 'https://api.youraitools.co/payguard/v1/address', ... }
 ```
 
-Since 0.2.0 the npm package ships a lite snapshot (lookup keys and match counts only) and exports `previewAddress`, `previewBatch`, `normalizeAddress` and `invalidInput`. The full engine with entity details (`src/screen.js`) runs only in the hosted Worker. Before 0.2.0, the package bundled the full list and exported `screenAddress`.
+Since 0.2.0 the package (also published to npm as `@agentgate-builder/payguard`) ships a lite snapshot (lookup keys and match counts only) and exports `previewAddress`, `previewBatch`, `normalizeAddress` and `invalidInput`. The full engine with entity details (`src/screen.js`) runs only in the hosted Worker. Before 0.2.0, the package bundled the full list and exported `screenAddress`.
 
 ## Data and matching
 
@@ -122,7 +182,7 @@ Since 0.2.0 the npm package ships a lite snapshot (lookup keys and match counts 
 | `GET\|POST /v1/address` | $0.001 | full screening result |
 | `POST /v1/batch` | $0.01 | up to 50 addresses |
 | `GET\|POST /v1/preview` | free, 10/min/IP | sanctioned true/false + chain guess |
-| `POST /mcp` | free, 10/min/IP | remote MCP, `screen_address` |
+| `POST /mcp` | free: 30 calls/day per IP, 10/min burst, then x402 | remote MCP, `screen_address`, `screen_batch` |
 | `GET /v1/list`, `/v1/stats`, `/health` | free | list date and counts, usage counters |
 | `GET /openapi.json`, `/.well-known/x402` | free | discovery |
 
@@ -130,7 +190,7 @@ x402 v2 (`PAYMENT-SIGNATURE`) and v1 (`X-PAYMENT`) clients both work; only HTTP 
 
 ## Testnet payment routes (Solana devnet, Stellar testnet, GOAT Network Testnet3)
 
-The same full screening result, paid on test networks. They are separate routes, so the Base mainnet terms above are unchanged. Solana and Stellar use the official x402 packages (`@x402/svm`, `@x402/stellar`) and the public, free [x402.org facilitator](https://x402.org/facilitator/supported), which pays the network fee. No real money moves. GOAT Testnet3 uses the standard EVM `exact` scheme (`@x402/evm`) with our own small facilitator; see [GOAT Network Testnet3](#goat-network-testnet3) below.
+The same full screening result, paid on test networks. They are separate routes, so the mainnet terms above are unchanged. Solana and Stellar use the official x402 packages (`@x402/svm`, `@x402/stellar`) and the public, free [x402.org facilitator](https://x402.org/facilitator/supported), which pays the network fee. No real money moves. GOAT Testnet3 uses the standard EVM `exact` scheme (`@x402/evm`) with our own small facilitator; see [GOAT Network Testnet3](#goat-network-testnet3) below.
 
 | Route | Network (CAIP-2) | Price | Pays to | Facilitator |
 |---|---|---|---|---|
