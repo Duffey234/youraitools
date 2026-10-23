@@ -5,17 +5,23 @@
 // Optional full results (SDN entity, programs, list date, checksum; refreshed daily): set PAYGUARD_X402_PRIVATE_KEY
 // (or X402_PRIVATE_KEY) to a Base wallet key holding a little USDC, and this server pays the hosted API per call over
 // x402 ($0.001/address, $0.01/batch): https://api.youraitools.co/payguard/v1/address
-//   npx -y @agentgate-builder/payguard   (bin: payguard)
+//   node src/mcp-stdio.js   (run from a source checkout: https://agentgate-source.pages.dev/x402-payguard/ ; bin: payguard)
 import { createInterface } from 'node:readline';
 import { previewAddress, previewBatch, LIST, DISCLAIMER, MAX_BATCH, PAID_ADDRESS_URL, PAID_BATCH_URL, FULL_DETAILS } from './lite.js';
 import { createPaidClient, keyFromEnv } from './paid.js';
 import { VERSION_STR as VERSION } from './version.js';
 
 export { VERSION };
-const PAID_NOTE = `Free offline preview by default (sanctioned true/false, match count, chain guess). With PAYGUARD_X402_PRIVATE_KEY set, returns the full paid result (SDN entity, programs, list date, checksum) from ${PAID_ADDRESS_URL}, paying $0.001 USDC on Base per address over x402.`;
+const CHAINS = 'Any chain is accepted; the SDN list covers Bitcoin, Ethereum and other EVM chains (Base, Arbitrum, BNB Chain, Polygon...), Tron, Solana, Litecoin, Monero, Bitcoin Cash/SV/Gold, Dash, Dogecoin, Ethereum Classic, XRP, Verge, Zcash and USDT/USDC addresses.';
+const ADDRESS_FORMAT = '20-140 letters/digits, optional URI prefix such as "ethereum:" or "bitcoincash:" (stripped); EVM hex and bech32 match case-insensitively, base58 exactly.';
+const MODES = (price, unit, url) => `Free mode (default, no key): offline lookup in the OFAC snapshot bundled with this server. Paid mode (PAYGUARD_X402_PRIVATE_KEY set to a Base wallet key holding USDC): ${price} USDC ${unit} over x402 to ${url} for the daily-refreshed full result; falls back to the free result with paid_error if payment fails; invalid input is never paid.`;
 export const TOOLS = [
-  { name: 'screen_address', title: 'OFAC SDN screen of a crypto address', description: `Reports whether a crypto address (EVM, BTC, TRX, SOL, LTC, XMR and more) appears in the US Treasury OFAC SDN list of digital currency addresses. ${PAID_NOTE} Informational screening, not legal advice.`, inputSchema: { type: 'object', properties: { address: { type: 'string', description: 'Blockchain address' } }, required: ['address'] }, annotations: { readOnlyHint: true, openWorldHint: false, idempotentHint: true } },
-  { name: 'screen_addresses', title: 'OFAC SDN screen of several addresses', description: `Same screen for up to ${MAX_BATCH} addresses in one call. Paid mode uses ${PAID_BATCH_URL} ($0.01 USDC per batch).`, inputSchema: { type: 'object', properties: { addresses: { type: 'array', items: { type: 'string' }, maxItems: MAX_BATCH } }, required: ['addresses'] }, annotations: { readOnlyHint: true, openWorldHint: false, idempotentHint: true } },
+  { name: 'screen_address', title: 'OFAC SDN screen of a crypto address',
+    description: `Checks one crypto address against the US Treasury OFAC SDN list of sanctioned digital currency addresses. For 2 or more addresses use screen_addresses (up to ${MAX_BATCH} per call, one charge per batch). Accepts any chain (BTC, ETH and EVM chains, TRX, SOL, LTC, XMR, BCH, XRP, ZEC and more). ${MODES('$0.001', 'per address', PAID_ADDRESS_URL)} Returns sanctioned (true/false), match_count, address (normalized), chain {guess, format}, list_updated_at and tier; paid adds matches[] (entity, entity_type, programs, list_date) and chain checksum_valid. Read-only; informational screening, not legal advice.`,
+    inputSchema: { type: 'object', properties: { address: { type: 'string', description: `One blockchain address, e.g. "0x8589427373D6D84E98730D7795D8f6f8731FDA16" or "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh": ${ADDRESS_FORMAT} The chain is detected automatically. ${CHAINS}` } }, required: ['address'] }, annotations: { readOnlyHint: true, openWorldHint: false, idempotentHint: true } },
+  { name: 'screen_addresses', title: 'OFAC SDN screen of several addresses',
+    description: `Checks 1-${MAX_BATCH} crypto addresses against the US Treasury OFAC SDN list in one call. Use it instead of repeated screen_address calls whenever you have several addresses (payee lists, counterparties, transaction inputs/outputs); use screen_address for a single one. Mixed chains allowed; one invalid entry rejects the whole call. ${MODES('$0.01', `per batch of up to ${MAX_BATCH}`, PAID_BATCH_URL)} Returns count, sanctioned_count, any_sanctioned, list_updated_at and results[] in input order, each {input, address, sanctioned, match_count, chain}; paid adds matches[] (entity, programs, list_date) per address. Read-only; informational screening, not legal advice.`,
+    inputSchema: { type: 'object', properties: { addresses: { type: 'array', items: { type: 'string', description: `One blockchain address: ${ADDRESS_FORMAT}` }, maxItems: MAX_BATCH, description: `1-${MAX_BATCH} blockchain addresses, one string per element, e.g. ["0x8589427373D6D84E98730D7795D8f6f8731FDA16", "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"]. Chains may be mixed (detected per address). ${CHAINS} More than ${MAX_BATCH} entries or any malformed one returns a bad_request error.` } }, required: ['addresses'] }, annotations: { readOnlyHint: true, openWorldHint: false, idempotentHint: true } },
 ];
 const PROTOCOLS = ['2025-11-25', '2025-06-18', '2025-03-26', '2024-11-05'];
 
