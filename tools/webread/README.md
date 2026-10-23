@@ -1,20 +1,62 @@
 # WebRead: URL to Markdown for AI agents (MCP server + x402 API)
 
 > **Start here:** copy-paste MCP configs for Claude, Cursor and Windsurf, x402 client code, AgentKit and LangChain wrappers: https://agentgate-source.pages.dev/start/  
-> API: https://api.youraitools.co/webread · fallback (same Worker): https://webread.agentgate.workers.dev · npm: `x402-url-to-markdown`
+> API: https://api.youraitools.co/webread · fallback (same Worker): https://webread.agentgate.workers.dev · source: https://agentgate-source.pages.dev/x402-url-to-markdown/ (MIT, self-host: [run from source](#self-host-run-from-source-no-npm))
 
 <img src="logo.svg" width="56" align="right" alt="WebRead logo">
 
 **Give your agent any web page as clean Markdown, for $0.002 per page. No account or API key needed.**
 
-WebRead fetches a public web page and returns only its main content as Markdown: no navigation, scripts or ads. Links come back absolute, with title, description, language and canonical metadata. Agents pay per successful read over [x402](https://docs.x402.org) in USDC on Base, and failed reads are free. There is a free preview, and a remote MCP server for Claude, Cursor and other MCP clients.
+WebRead fetches a public web page and returns only its main content as Markdown: no navigation, scripts or ads. Links come back absolute, with title, description, language and canonical metadata. Agents pay per successful read over [x402](https://docs.x402.org) in USDC on Base, Polygon, Arbitrum One or Solana, and failed reads are free. There is a free preview, and a remote MCP server for Claude, Cursor and other MCP clients.
 
 - **Live:** https://api.youraitools.co/webread
-- **Paid route:** `GET https://api.youraitools.co/webread/v1/read?url=<page>` costs **$0.002 USDC on Base** (x402 v2 and v1). It is listed on the x402 Bazaar (PayAI).
+- **Paid route:** `GET https://api.youraitools.co/webread/v1/read?url=<page>` costs **$0.002 USDC** on Base, Polygon, Arbitrum One or Solana (x402 v2; the v1 body lists Base). It is listed on the x402 Bazaar (PayAI).
 - **Free preview:** `GET /v1/read/preview?url=<page>` returns the first 2,000 characters, 10 calls/min per IP.
-- **Remote MCP:** `https://api.youraitools.co/webread/mcp` with the tool `read_url`. It is listed in the official MCP Registry as `io.github.agentgate-builder/x402-url-to-markdown`.
-- **Local MCP (stdio):** `npx -y -p x402-url-to-markdown webread-mcp` or `docker build -t webread-mcp . && docker run -i --rm webread-mcp`, tool `read_url`. Reads pages locally with the same SSRF-safe, robots.txt-respecting reader (free; no data goes to WebRead).
-- **npm:** `x402-url-to-markdown`, which ships the dependency-free HTML-to-Markdown converter, the SSRF-safe fetcher and a robots.txt parser.
+- **Remote MCP:** `https://api.youraitools.co/webread/mcp` with the tool `read_url` (free tier: 30 calls/day, then $0.002 per call in USDC). It is listed in the official MCP Registry as `co.youraitools/webread`.
+- **Local MCP (stdio):** [run from source](#self-host-run-from-source-no-npm) (`node src/mcp-stdio.js`) or `docker build -t webread-mcp . && docker run -i --rm webread-mcp`, tool `read_url`. Reads pages locally with the same SSRF-safe, robots.txt-respecting reader (free; no data goes to WebRead).
+- **Library:** `src/` in the source (the npm package `x402-url-to-markdown` exists but publishing is paused) ships the dependency-free HTML-to-Markdown converter, the SSRF-safe fetcher and a robots.txt parser.
+
+## Remote MCP: free tier + one-line install
+
+Free tier: 30 calls/day per IP, then $0.002 per call in USDC over x402. Free calls return the full Markdown (default 50,000 characters, `maxChars` up to 200,000); each free result carries an `upgrade` field (and a last text line) with the calls left today. Call 31 returns a `payment_required` (402) tool result pointing to the paid x402 route. Tools: `read_url`. Endpoint: `https://api.youraitools.co/webread/mcp` (Streamable HTTP, stateless).
+
+Claude Code:
+
+```bash
+claude mcp add --transport http webread https://api.youraitools.co/webread/mcp
+```
+
+Claude Desktop: Settings > Connectors > Add custom connector with the URL above, or in `claude_desktop_config.json`:
+
+```json
+{ "mcpServers": { "webread": { "command": "npx", "args": ["-y", "mcp-remote", "https://api.youraitools.co/webread/mcp"] } } }
+```
+
+Cursor (`~/.cursor/mcp.json`), or one click: [Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=webread&config=eyJ1cmwiOiJodHRwczovL2FwaS55b3VyYWl0b29scy5jby93ZWJyZWFkL21jcCJ9)
+
+```json
+{ "mcpServers": { "webread": { "url": "https://api.youraitools.co/webread/mcp" } } }
+```
+
+## Self-host: run from source (no npm)
+
+The stdio MCP server runs from the source; you need Node.js 20+ (or Docker). npm publishing is paused, so install from the source mirror instead of the registry.
+
+```bash
+git clone https://agentgate-source.pages.dev/x402-url-to-markdown/x402-url-to-markdown.git
+#   or: curl -sL https://agentgate-source.pages.dev/x402-url-to-markdown/x402-url-to-markdown.tar.gz | tar xz
+cd x402-url-to-markdown
+npm ci --omit=dev --ignore-scripts
+node src/mcp-stdio.js            # stdio MCP server (newline-delimited JSON-RPC)
+```
+
+```json
+{ "mcpServers": { "webread": { "command": "node", "args": ["/absolute/path/to/x402-url-to-markdown/src/mcp-stdio.js"] } } }
+```
+
+Claude Code: `claude mcp add webread -- node /absolute/path/to/x402-url-to-markdown/src/mcp-stdio.js`
+
+Docker (same stdio server): `docker build -t webread-mcp . && docker run -i --rm webread-mcp`, client config `{ "command": "docker", "args": ["run", "-i", "--rm", "webread-mcp"] }`.
 
 ## 30-second quickstart
 
@@ -40,8 +82,8 @@ const { title, markdown } = await (await pay('https://api.youraitools.co/webread
 ```
 
 ```js
-// Or use just the converter (no network): npm i x402-url-to-markdown
-import { htmlToMarkdown } from 'x402-url-to-markdown';
+// Or use just the converter from your checkout (no network, no dependencies):
+import { htmlToMarkdown } from './x402-url-to-markdown/src/html2md.js';
 const { markdown, title } = htmlToMarkdown(html, { baseUrl: 'https://example.com/' });
 ```
 
@@ -96,7 +138,7 @@ npx wrangler dev    # Workers runtime locally
 
 It deploys to Cloudflare Workers (free plan) with `wrangler deploy`. Sister project: [AgentGate](https://api.youraitools.co/agentgate), which checks whether an AI agent is verified.
 
-Built by an AI builder agent (`agentgate-builder`) with human oversight. MIT licensed. Tips: `0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F` (Base).
+Built by [YourAITools](https://youraitools.co) (an AI builder agent with human oversight). MIT licensed. Tips: `0x3c1A1E01e790Cd326495631B3b38Bd7068F08d6F` (Base).
 
 ## Agent trust kit
 
