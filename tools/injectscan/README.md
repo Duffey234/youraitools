@@ -1,21 +1,63 @@
 # InjectScan: prompt injection detection for AI agents (MCP server + x402 API)
 
 > **Start here:** copy-paste MCP configs for Claude, Cursor and Windsurf, x402 client code, AgentKit and LangChain wrappers: https://agentgate-source.pages.dev/start/  
-> API: https://api.youraitools.co/injectscan · fallback (same Worker): https://injectscan.agentgate.workers.dev · npm: `x402-prompt-injection-scan`
+> API: https://api.youraitools.co/injectscan · fallback (same Worker): https://injectscan.agentgate.workers.dev · source: https://agentgate-source.pages.dev/x402-prompt-injection-scan/ (MIT, self-host: [run from source](#self-host-run-from-source-no-npm))
 
 <img src="logo.svg" width="56" align="right" alt="InjectScan logo">
 
 **Check untrusted text, web pages and MCP tool definitions for prompt injection before your agent acts on them. $0.003 per scan, no account or API key needed.**
 
-InjectScan is a deterministic, documented rule engine. It returns a risk score (0–100), a verdict (`safe` / `suspicious` / `malicious`), the categories that fired, and every finding as a character span in *your original text*, so you can highlight or strip it. Agents pay per successful scan over [x402](https://docs.x402.org) in USDC on Base, and failed calls are free. There is a free preview, a free remote MCP server, and an npm library that runs the same detector offline.
+InjectScan is a deterministic, documented rule engine. It returns a risk score (0–100), a verdict (`safe` / `suspicious` / `malicious`), the categories that fired, and every finding as a character span in *your original text*, so you can highlight or strip it. Agents pay per successful scan over [x402](https://docs.x402.org) in USDC on Base, Polygon, Arbitrum One or Solana, and failed calls are free. There is a free preview, a free remote MCP server, and an npm library that runs the same detector offline.
 
 - **Live:** https://api.youraitools.co/injectscan (paste text into the "Try it free" box)
-- **Paid route:** `GET|POST https://api.youraitools.co/injectscan/v1/scan` costs **$0.003 USDC on Base** (x402 v2 and v1). Send `text`, `url` or `tools`. Listed on the x402 Bazaar (PayAI).
+- **Paid route:** `GET|POST https://api.youraitools.co/injectscan/v1/scan` costs **$0.003 USDC** on Base, Polygon, Arbitrum One or Solana (x402 v2; the v1 body lists Base). Send `text`, `url` or `tools`. Listed on the x402 Bazaar (PayAI).
 - **Free preview:** `GET|POST /v1/scan/preview` scans text up to 2,000 characters, full result, 10 calls/min per IP.
-- **Remote MCP:** `https://api.youraitools.co/injectscan/mcp` with the tool `scan_text`. MCP Registry name `io.github.agentgate-builder/x402-prompt-injection-scan`.
-- **Local MCP (stdio):** `npx -y -p x402-prompt-injection-scan injectscan-mcp` or `docker build -t injectscan-mcp . && docker run -i --rm injectscan-mcp`, tool `scan_text`. Runs the same rule engine locally, up to 100,000 characters (free; nothing leaves your machine). URL and MCP-tool scans stay on the hosted API.
-- **npm:** `x402-prompt-injection-scan`, the detector with zero runtime dependencies.
+- **Remote MCP:** `https://api.youraitools.co/injectscan/mcp` with the tools `scan_text`, `scan_url` and `scan_tools` (free tier: 30 calls/day, then $0.003 per call in USDC; safety check only). MCP Registry name `co.youraitools/injectscan`.
+- **Local MCP (stdio):** [run from source](#self-host-run-from-source-no-npm) (`node src/mcp-stdio.js`) or `docker build -t injectscan-mcp . && docker run -i --rm injectscan-mcp`, tool `scan_text`. Runs the same rule engine locally, up to 100,000 characters (free; nothing leaves your machine). URL and MCP-tool scans stay on the hosted API.
+- **Library:** `src/` in the source (zero runtime dependencies); the npm package `x402-prompt-injection-scan` exists but publishing is paused.
 - **Benchmark:** precision 0.99–1.00 on held-out labeled data, recall 0.27–0.81 depending on attack style. See [BENCHMARK.md](BENCHMARK.md) and [Honest limits](#honest-limits).
+
+## Remote MCP: free tier + one-line install
+
+Free tier: 30 calls/day per IP, then $0.003 per call in USDC over x402. Free calls return full scans (text up to 100,000 characters, web pages, MCP tool definitions). Safety check only; each free result carries an `upgrade` field (and a last text line) with the calls left today. Call 31 returns a `payment_required` (402) tool result pointing to the paid x402 route. Tools: `scan_text`, `scan_url`, `scan_tools`. Endpoint: `https://api.youraitools.co/injectscan/mcp` (Streamable HTTP, stateless).
+
+Claude Code:
+
+```bash
+claude mcp add --transport http injectscan https://api.youraitools.co/injectscan/mcp
+```
+
+Claude Desktop: Settings > Connectors > Add custom connector with the URL above, or in `claude_desktop_config.json`:
+
+```json
+{ "mcpServers": { "injectscan": { "command": "npx", "args": ["-y", "mcp-remote", "https://api.youraitools.co/injectscan/mcp"] } } }
+```
+
+Cursor (`~/.cursor/mcp.json`), or one click: [Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=injectscan&config=eyJ1cmwiOiJodHRwczovL2FwaS55b3VyYWl0b29scy5jby9pbmplY3RzY2FuL21jcCJ9)
+
+```json
+{ "mcpServers": { "injectscan": { "url": "https://api.youraitools.co/injectscan/mcp" } } }
+```
+
+## Self-host: run from source (no npm)
+
+The stdio MCP server runs from the source; you need Node.js 20+ (or Docker). npm publishing is paused, so install from the source mirror instead of the registry.
+
+```bash
+git clone https://agentgate-source.pages.dev/x402-prompt-injection-scan/x402-prompt-injection-scan.git
+#   or: curl -sL https://agentgate-source.pages.dev/x402-prompt-injection-scan/x402-prompt-injection-scan.tar.gz | tar xz
+cd x402-prompt-injection-scan
+npm install --omit=dev --ignore-scripts   # zero runtime dependencies, so this installs nothing
+node src/mcp-stdio.js            # stdio MCP server (newline-delimited JSON-RPC)
+```
+
+```json
+{ "mcpServers": { "injectscan": { "command": "node", "args": ["/absolute/path/to/x402-prompt-injection-scan/src/mcp-stdio.js"] } } }
+```
+
+Claude Code: `claude mcp add injectscan -- node /absolute/path/to/x402-prompt-injection-scan/src/mcp-stdio.js`
+
+Docker (same stdio server): `docker build -t injectscan-mcp . && docker run -i --rm injectscan-mcp`, client config `{ "command": "docker", "args": ["run", "-i", "--rm", "injectscan-mcp"] }`.
 
 ## 30-second quickstart
 
@@ -46,9 +88,9 @@ await scan({ tools: (await mcpClient.listTools()).tools }); // MCP tool poisonin
 ```
 
 ```js
-// Or run the detector locally (no network, no payment): npm i x402-prompt-injection-scan
-import { scan } from 'x402-prompt-injection-scan';
-import { scanTools } from 'x402-prompt-injection-scan/scanner';
+// Or run the detector locally from your checkout (no network, no payment, zero dependencies):
+import { scan } from './x402-prompt-injection-scan/src/detect.js';
+import { scanTools } from './x402-prompt-injection-scan/src/scanner.js';
 const r = scan(untrustedText);
 if (r.verdict === 'malicious') throw new Error('refusing: ' + r.categories.map((c) => c.category).join(', '));
 ```
