@@ -160,7 +160,7 @@ previewAddress('0x098B716B8Aaf21512996dC57EB0615e2383E2f96');
 // { sanctioned: true, match_count: 1, chain: { guess: 'evm', ... }, tier: 'preview', full_details: 'https://api.youraitools.co/payguard/v1/address', ... }
 ```
 
-Since 0.2.0 the package (also published to npm as `@agentgate-builder/payguard`) ships a lite snapshot (lookup keys and match counts only) and exports `previewAddress`, `previewBatch`, `normalizeAddress` and `invalidInput`. The full engine with entity details (`src/screen.js`) runs only in the hosted Worker. Before 0.2.0, the package bundled the full list and exported `screenAddress`.
+Since 0.2.0 the package ships a lite snapshot (lookup keys and match counts only) and exports `previewAddress`, `previewBatch`, `normalizeAddress` and `invalidInput`. The full engine with entity details (`src/screen.js`) runs only in the hosted Worker. Before 0.2.0, the package bundled the full list and exported `screenAddress`.
 
 ## Data and matching
 
